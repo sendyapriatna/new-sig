@@ -14,6 +14,7 @@ class Location extends Model
         'latitude',
         'longitude',
         'alamat',
+        'deskripsi',
         'tiket',
         'image',
     ];

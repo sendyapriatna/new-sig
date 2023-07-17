@@ -15,7 +15,7 @@
         $.getJSON('titik/json', function(data) {
             $.each(data, function(index) {
                 // alert(data[index].nama)
-                L.marker([data[index].latitude, data[index].longitude]).addTo(map).bindPopup("<div><img style='width: 100%;border-radius: 0.5em;' src=" + '/storage/' + data[index].image + "><br><br><b>" + data[index].nama + "</b><br>" + data[index].alamat + "<br>Tiket Rp." + data[index].tiket + "</div>").openPopup();;
+                L.marker([data[index].latitude, data[index].longitude]).addTo(map).bindPopup("<div><img style='width: 100%;border-radius: 0.5em;' src=" + '/storage/' + data[index].image + "><br><br><b>" + data[index].nama + "</b><br>" + data[index].alamat + "<br><a class='btn btn-primary' href=" + '/landing-page/detail/' + data[index].id + ">Detail</a></div>").openPopup();;
             });
         });
     });

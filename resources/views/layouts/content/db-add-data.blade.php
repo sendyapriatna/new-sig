@@ -10,7 +10,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
-        <form action="/dashboard/view/add" method="post" enctype="multipart/form-data">
+        <form action="/dashboard/add" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="nama" class="form-label">Name Place</label>
@@ -25,6 +25,15 @@
                 <label for="alamat" class="form-label">Address</label>
                 <input type="text" style="border-radius: 0.5em;" class="form-control @error('alamat') is-invalid @enderror" name="alamat">
                 @error('alamat')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="deskripsi" class="form-label">Deskripsi</label>
+                <input type="text" style="border-radius: 0.5em;" class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi">
+                @error('deskripsi')
                 <div class="invalid-feedback">
                     {{$message}}
                 </div>

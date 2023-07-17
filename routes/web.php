@@ -27,12 +27,15 @@ Route::get('/', [App\Http\Controllers\LandingPageController::class, 'index']);
 Route::get('/titik/json', [App\Http\Controllers\LandingPageController::class, 'titik']); // buat cek dump (gak butuh)
 Route::get('/lokasi/json/{id}', [App\Http\Controllers\LandingPageController::class, 'lokasi']); // buat cek dump (gak butuh)
 Route::get('/map', [App\Http\Controllers\MapGisController::class, 'index']);
+Route::get('/map2', [App\Http\Controllers\MapGisController::class, 'index']);
+Route::get('/landing-page/detail/{id}', [App\Http\Controllers\ViewDetailController::class, 'index']);
 // Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
 
 // Dashboard
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index2'])->middleware('auth');
-Route::get('/dashboard/view', [App\Http\Controllers\DashboardController::class, 'index3'])->middleware('auth');
-Route::post('/dashboard/view/add', [App\Http\Controllers\DashboardController::class, 'store'])->middleware('auth');
-Route::get('/dashboard/view/edit/{id}', [App\Http\Controllers\DashboardController::class, 'update'])->middleware('auth');
-Route::post('/dashboard/view/update', [App\Http\Controllers\DashboardController::class, 'updated'])->middleware('auth');
-Route::get('/dashboard/view/delete/{id}', [App\Http\Controllers\DashboardController::class, 'delete'])->middleware('auth');
+Route::get('/dashboard/create', [App\Http\Controllers\DashboardController::class, 'index3'])->middleware('auth');
+Route::post('/dashboard/add', [App\Http\Controllers\DashboardController::class, 'store'])->middleware('auth');
+Route::get('/dashboard/edit/{id}', [App\Http\Controllers\DashboardController::class, 'update'])->middleware('auth');
+Route::post('/dashboard/update', [App\Http\Controllers\DashboardController::class, 'updated'])->middleware('auth');
+Route::get('/dashboard/delete/{id}', [App\Http\Controllers\DashboardController::class, 'delete'])->middleware('auth');
+Route::get('/dashboard/detail/{id}', [App\Http\Controllers\DashboardController::class, 'detail'])->middleware('auth');

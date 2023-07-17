@@ -99,14 +99,14 @@
                         <td class="text-center align-middle ">
                             <div class="row d-flex justify-content-center">
                                 <div class="col-sm-2 d-flex justify-content-center">
-                                    <a href="/dashboard/view/edit/{{ $item->id}}" style="border-radius: 0.5em;" class="btn btn-primary">Detail</a>
+                                    <a href="/dashboard/edit/{{ $item->id}}" style="border-radius: 0.5em;" class="btn btn-primary">Detail</a>
                                 </div>
 
                                 <div class="col-sm-2 d-flex justify-content-center">
-                                    <a href="/dashboard/view/edit/{{ $item->id}}" style="border-radius: 0.5em;" class="btn btn-warning">Edit</a>
+                                    <a href="/dashboard/edit/{{ $item->id}}" style="border-radius: 0.5em;" class="btn btn-warning">Edit</a>
                                 </div>
                                 <div class="col-sm-2 d-flex justify-content-center">
-                                    <a href="/dashboard/view/delete/{{ $item->id}}" style="border-radius: 0.5em;" class="btn btn-danger">Hapus</a>
+                                    <a href="/dashboard/delete/{{ $item->id}}" style="border-radius: 0.5em;" class="btn btn-danger">Hapus</a>
                                 </div>
                             </div>
                         </td>

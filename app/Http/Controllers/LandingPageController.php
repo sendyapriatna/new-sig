@@ -13,7 +13,7 @@ class LandingPageController extends Controller
     }
     public function titik()
     {
-        $result = DB::table('location_tables')->select('nama', 'latitude', 'longitude', 'alamat', 'tiket', 'image')->get();
+        $result = DB::table('location_tables')->select('id', 'nama', 'latitude', 'longitude', 'alamat', 'tiket', 'image')->get();
         return json_encode($result);
     }
 

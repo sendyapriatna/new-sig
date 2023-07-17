@@ -27,6 +27,7 @@ class DashboardController extends Controller
             'latitude' => 'required',
             'longitude' => 'required',
             'alamat' => 'required',
+            'deskripsi' => 'required',
             'tiket' => 'required',
             'image' => 'image|file|max:2048',
         ]);
@@ -34,24 +35,10 @@ class DashboardController extends Controller
         if ($request->file('image')) {
             $validatedData['image'] = $request->file('image')->store('post-image');
         }
-
-        // $img = $validatedData['image'];
-        // // dd($img);
-        // $post = Location::create([
-        //     'nama' => $request->nama,
-        //     'latitude' => $request->latitude,
-        //     'longitude' => $request->longitude,
-        //     'alamat' => $request->alamat,
-        //     'tiket' => $request->tiket,
-        //     'image' => $img,
-        // ]);
-
         $post = Location::Create($validatedData);
 
-
-
         if ($post) {
-            return redirect('/dashboard/view')
+            return redirect('/dashboard')
                 ->with([
                     'success' => 'New post has been created!'
                 ]);
@@ -76,6 +63,7 @@ class DashboardController extends Controller
             'latitude' => 'required',
             'longitude' => 'required',
             'alamat' => 'required',
+            'deskripsi' => 'required',
             'tiket' => 'required',
         ]);
 
@@ -84,6 +72,7 @@ class DashboardController extends Controller
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
             'alamat' => $request->alamat,
+            'deskripsi' => $request->deskripsi,
             'tiket' => $request->tiket,
 
         ]);
@@ -117,5 +106,10 @@ class DashboardController extends Controller
                     'error' => 'Some problem occurred, please try again'
                 ]);
         }
+    }
+    public function detail($id)
+    {
+        $data = DB::table('location_tables')->where('id', $id)->first();
+        return view('layouts.content.db-detail-data', ['data' => $data]);
     }
 }

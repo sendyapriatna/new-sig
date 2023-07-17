@@ -10,7 +10,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
-        <form action="/dashboard/view/update" method="post">
+        <form action="/dashboard/update" method="post">
             <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
             <input type="hidden" id="id" name="id" value="{{ $data->id}}" class="form-control select2">
             <div class="mb-3">
@@ -26,6 +26,15 @@
                 <label for="alamat" class="form-label">Alamat</label>
                 <input type="text" style="border-radius: 0.5em;" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{$data->alamat}}">
                 @error('alamat')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="deskripsi" class="form-label">Deskripsi</label>
+                <input type="text" style="border-radius: 0.5em;" class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" value="{{$data->deskripsi}}">
+                @error('deskripsi')
                 <div class="invalid-feedback">
                     {{$message}}
                 </div>

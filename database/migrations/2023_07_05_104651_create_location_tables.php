@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('latitude');
             $table->string('longitude');
             $table->string('alamat');
+            $table->string('deskripsi');
             $table->integer('tiket');
             $table->string('image');
             $table->timestamps();

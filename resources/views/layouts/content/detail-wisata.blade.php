@@ -24,6 +24,9 @@
                         </th>
                     </tr>
                     <tr>
+                        <th colspan="2"><img style="width: 50%;border-radius: 0.5em;" src="/storage/{{$data->image}}"></th>
+                    </tr>
+                    <tr>
                         <th>Nama Wisata</th>
                         <td>{{$data->nama}}</td>
                     </tr>

@@ -12,5 +12,5 @@
         maxZoom: 20,
         subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     }).addTo(map);
-    var marker = L.marker(["{{$data->latitude}}", "{{$data->longitude}}"]).addTo(map);
+    var marker = L.marker(["{{$data->latitude}}", "{{$data->longitude}}"]).addTo(map).bindPopup("{{$data->nama}}").openPopup();
 </script>

@@ -1,7 +1,7 @@
 @extends('layouts.dashboard.dashboard')
 
 @section('content2')
-<div class="row">
+<!-- <div class="row">
     <div class="col-sm-3">
         <div class="card shadow p-3 mb-5 bg-body" style="border-radius: 1.5em; padding: 0 20px 0 20px;">
             <div class="row">
@@ -66,7 +66,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <div class="row">
     @if(session()->has('success'))
     <div class="alert alert-success alert-dismissible fade show" style="border-radius: 1.5em; padding: 20px; margin-left: 10px; width:98%;" role="alert">
@@ -99,7 +99,7 @@
                         <td class="text-center align-middle ">
                             <div class="row d-flex justify-content-center">
                                 <div class="col-sm-2 d-flex justify-content-center">
-                                    <a href="/dashboard/edit/{{ $item->id}}" style="border-radius: 0.5em;" class="btn btn-primary">Detail</a>
+                                    <a href="/dashboard/detail/{{ $item->id}}" style="border-radius: 0.5em;" class="btn btn-primary">Detail</a>
                                 </div>
 
                                 <div class="col-sm-2 d-flex justify-content-center">

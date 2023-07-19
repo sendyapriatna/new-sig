@@ -3,7 +3,7 @@
 @section('content2')
 <div class="card" style="border-radius: 2em; padding: 20px;">
     <div class="card-body">
-        <h2>DetailTempat Wisata</h2>
+        <h2>Detail Tempat Wisata</h2>
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{session('success')}}

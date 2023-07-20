@@ -38,13 +38,7 @@
                             <a class="nav-link active" aria-current="page" href="/landing-page">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Data Wisata</a>
+                            <a class="nav-link" href="#map">Map</a>
                         </li>
                     </ul>
 

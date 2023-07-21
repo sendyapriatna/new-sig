@@ -8,14 +8,16 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-    // public function index()
-    // {
-    //     return view('layouts.dashboard.dashboard', ['location_tables' => Location::orderBy('id', 'desc')->get()]);
-    // }
-    public function index2()
+    public function index()
     {
-        return view('layouts.content.db-data', ['location_tables' => Location::orderBy('id', 'desc')->paginate(7)]);
+        $users = DB::table('users')->count();
+        $location = DB::table('location_tables')->count();
+        return view('layouts.dashboard.dashboard', ['location_tables' => Location::orderBy('id', 'desc')->paginate(10)], compact('users', 'location'));
     }
+    // public function index2()
+    // {
+    //     return view('layouts.content.db-data', ['location_tables' => Location::orderBy('id', 'desc')->paginate(7)]);
+    // }
     public function index3()
     {
         return view('layouts.content.db-add-data');
@@ -28,6 +30,7 @@ class DashboardController extends Controller
             'longitude' => 'required',
             'alamat' => 'required',
             'deskripsi' => 'required',
+            'kontak' => 'required',
             'tiket' => 'required',
             'image' => 'image|file|max:2048',
         ]);
@@ -64,6 +67,7 @@ class DashboardController extends Controller
             'longitude' => 'required',
             'alamat' => 'required',
             'deskripsi' => 'required',
+            'kontak' => 'required',
             'tiket' => 'required',
         ]);
 
@@ -73,6 +77,7 @@ class DashboardController extends Controller
             'longitude' => $request->longitude,
             'alamat' => $request->alamat,
             'deskripsi' => $request->deskripsi,
+            'kontak' => $request->kontak,
             'tiket' => $request->tiket,
 
         ]);

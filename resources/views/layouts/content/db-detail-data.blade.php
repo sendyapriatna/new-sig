@@ -1,9 +1,19 @@
-@extends('layouts.dashboard.dashboard')
+@extends('layouts.app2')
 
-@section('content2')
-<div class="card" style="border-radius: 2em; padding: 20px;">
-    <div class="card-body">
-        <h2>Detail Tempat Wisata</h2>
+@section('title', 'Add Data')
+
+@push('style')
+<!-- CSS Libraries -->
+<link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
+@endpush
+
+@section('main')
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Detail Post</h1>
+        </div>
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{session('success')}}
@@ -26,6 +36,10 @@
                 <input type="text" style="border-radius: 0.5em;" class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" value="{{$data->deskripsi}}" readonly>
             </div>
             <div class="mb-3">
+                <label for="kontak" class="form-label">Contact</label>
+                <input type="text" style="border-radius: 0.5em;" class="form-control @error('kontak') is-invalid @enderror" name="kontak" value="{{$data->kontak}}" readonly>
+            </div>
+            <div class="mb-3">
                 <label for="tiket" class="form-label">Harga Tiket</label>
                 <input type="text" style="border-radius: 0.5em;" class="form-control @error('tiket') is-invalid @enderror" name="tiket" value="{{$data->tiket}}" readonly>
             </div>
@@ -37,9 +51,20 @@
                 <label for="longitude" class="form-label">Longitude</label>
                 <input type="text" style="border-radius: 0.5em;" class="form-control @error('longitude') is-invalid @enderror" name="longitude" value="{{$data->longitude}}" readonly>
             </div>
-            <button type="submit" style="border-radius: 0.5em;" class="btn btn-success">Submit</button>
         </form>
-    </div>
+    </section>
 </div>
 @endsection
-</div>
+
+@push('scripts')
+<!-- JS Libraies -->
+<script src="{{ asset('library/simpleweather/jquery.simpleWeather.min.js') }}"></script>
+<script src="{{ asset('library/chart.js/dist/Chart.min.js') }}"></script>
+<script src="{{ asset('library/jqvmap/dist/jquery.vmap.min.js') }}"></script>
+<script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+<script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
+<script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+
+<!-- Page Specific JS File -->
+<script src="{{ asset('js/page/index-0.js') }}"></script>
+@endpush

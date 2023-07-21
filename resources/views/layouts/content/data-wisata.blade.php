@@ -22,7 +22,7 @@
                         <td>Rp.{{$item->tiket}}</td>
                         <td>{{$item->kontak}}</td>
                         <td>
-                            <a href="/dashboard/detail/{{ $item->id}}" style="border-radius: 0.5em;" class="btn btn-primary">Detail</a>
+                            <a href="/landing-page/detail/{{ $item->id}}" style="border-radius: 0.5em;" class="btn btn-primary">Detail</a>
                         </td>
                     </tr>
                     @endforeach

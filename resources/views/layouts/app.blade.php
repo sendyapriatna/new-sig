@@ -42,6 +42,9 @@
                             <a class="nav-link active" aria-current="page" href="/landing-page">Home</a>
                         </li>
                         <li class="nav-item">
+<<<<<<< HEAD
+                            <a class="nav-link" href="#map">Map</a>
+=======
                             <a class="nav-link" href="#">About</a>
                         </li>
                         <li class="nav-item">
@@ -49,6 +52,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/landing-page/data-wisata">Data Wisata</a>
+>>>>>>> 5cc1457bad3157007827846c0e93d58ccf658406
                         </li>
                         <!-- Authentication Links -->
                         @guest

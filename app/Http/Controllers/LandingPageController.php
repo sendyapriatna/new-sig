@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Location;
 use Illuminate\Support\Facades\DB;
 
 class LandingPageController extends Controller
 {
     public function index()
     {
-        return view('layouts.dashboard.landing-page');
+        $location = DB::table('location_tables')->count();
+        return view('layouts.dashboard.landing-page', compact('location'));
     }
     public function titik()
     {
@@ -22,5 +24,12 @@ class LandingPageController extends Controller
     {
         $result2 = DB::table('location_tables')->select('nama', 'alamat', 'tiket')->where('id', $id)->get();
         return json_encode($result2);
+    }
+
+
+    // VIEW DATA WISATA
+    public function dataWisata()
+    {
+        return view('layouts.content.data-wisata', ['location_tables' => Location::orderBy('id', 'desc')->paginate(10)]);
     }
 }

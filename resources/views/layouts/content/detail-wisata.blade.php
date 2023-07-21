@@ -6,7 +6,7 @@
                 <table class="table table-borderless">
                     <tr>
                         <th>
-                            <h6>Lokasi</h6>
+                            <h6>Navigation</h6>
                         </th>
                     </tr>
                     <tr>
@@ -20,26 +20,30 @@
                 <table class="table table-borderless">
                     <tr>
                         <th>
-                            <h6>Informasi Wisata</h6>
+                            <h6>Information</h6>
                         </th>
                     </tr>
                     <tr>
                         <th colspan="2"><img style="width: 50%;border-radius: 0.5em;" src="/storage/{{$data->image}}"></th>
                     </tr>
                     <tr>
-                        <th>Nama Wisata</th>
+                        <th>Nama</th>
                         <td>{{$data->nama}}</td>
                     </tr>
                     <tr>
-                        <th>Alamat</th>
+                        <th>Address</th>
                         <td>{{$data->alamat}}</td>
                     </tr>
                     <tr>
-                        <th>Deskripsi Wisata</th>
+                        <th>Description</th>
                         <td>{{$data->deskripsi}}</td>
                     </tr>
                     <tr>
-                        <th>Harga Tiket</th>
+                        <th>Contact</th>
+                        <td>{{$data->kontak}}</td>
+                    </tr>
+                    <tr>
+                        <th>ticket Price</th>
                         <td>{{$data->tiket}}</td>
                     </tr>
                 </table>

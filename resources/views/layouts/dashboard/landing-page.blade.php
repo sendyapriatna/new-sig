@@ -1,4 +1,5 @@
 @include('layouts.app')
+@section('title', 'Page Title')
 <div class="container-fluid">
     @if(session()->has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -54,28 +55,28 @@
             <div class="row">
                 <div class="col d-flex justify-content-center">
                     <div class="card border-light shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
-                        <img src="{{ url ('frontend/img/ud1.png') }}" class="card-img-top" alt="...">
+                        <img src="{{ url ('frontend/img/img1.jpg') }}" class="card-img-top" alt="...">
                         <div class="card-body text-center">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="landing-page/detail/1" style="border-radius: 0.5em;" class="btn btn-success">Detail ➝</a>
+                            <p class="card-text">Waduk Sermo</p>
+                            <a href="landing-page/detail/1" style="border-radius: 0.5em;background-color: #28CB8B; color:#fff;" class="btn">Detail ➝</a>
                         </div>
                     </div>
                 </div>
                 <div class="col d-flex justify-content-center">
                     <div class="card border-light shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
-                        <img src="{{ url ('frontend/img/ud1.png') }}" class="card-img-top" alt="...">
+                        <img src="{{ url ('frontend/img/img2.jpg') }}" class="card-img-top" alt="...">
                         <div class="card-body text-center">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="landing-page/detail/2" style="border-radius: 0.5em;" class="btn btn-success">Detail ➝</a>
+                            <p class="card-text">Wisata Kalibiru</p>
+                            <a href="landing-page/detail/2" style="border-radius: 0.5em;background-color: #28CB8B; color:#fff;" class="btn">Detail ➝</a>
                         </div>
                     </div>
                 </div>
                 <div class="col d-flex justify-content-center">
                     <div class="card border-light shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
-                        <img src="{{ url ('frontend/img/ud1.png') }}" class="card-img-top" alt="...">
+                        <img src="{{ url ('frontend/img/img3.jpg') }}" class="card-img-top" alt="...">
                         <div class="card-body text-center">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="landing-page/detail/3" style="border-radius: 0.5em;" class="btn btn-success">Detail ➝</a>
+                            <p class="card-text">Air Terjun Kedung Pedut</p>
+                            <a href="landing-page/detail/3" style="border-radius: 0.5em;background-color: #28CB8B; color:#fff;" class="btn">Detail ➝</a>
                         </div>
                     </div>
                 </div>
@@ -83,6 +84,6 @@
         </div>
     </section>
 </div>
-<div style="background-color: #28CB8B; min-height:70px;" class="d-flex align-items-center justify-content-center">
-    <p>Copyright &copy; 2018 Design By Muhamad Nauval Azhar</p>
+<div style="background-color: #28CB8B; min-height:70px; color:#fff;" class="d-flex align-items-center justify-content-center">
+    <p>Copyright &copy; 2023</p>
 </div>

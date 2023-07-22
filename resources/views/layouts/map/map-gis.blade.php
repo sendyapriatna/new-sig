@@ -8,7 +8,7 @@
     var map = L.map('map').setView([-7.742404393062417, 110.27684935071042], 13);
     // google street
     L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-        maxZoom: 11,
+        maxZoom: 15,
         subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     }).addTo(map);
 

@@ -20,7 +20,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
-        <form action="/dashboard/update" method="post">
+        <form action="/shelter/update" method="post">
             <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
             <input type="hidden" id="id" name="id" value="{{ $data->id}}" class="form-control select2">
             <div class="mb-3">
@@ -42,9 +42,9 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="deskripsi" class="form-label">Deskripsi</label>
-                <input type="text" style="border-radius: 0.5em;" class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" value="{{$data->deskripsi}}">
-                @error('deskripsi')
+                <label for="keterangan" class="form-label">Keterangan</label>
+                <input type="text" style="border-radius: 0.5em;" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan" value="{{$data->keterangan}}">
+                @error('keterangan')
                 <div class="invalid-feedback">
                     {{$message}}
                 </div>
@@ -60,33 +60,41 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="tiket" class="form-label">Harga Tiket</label>
-                <input type="text" style="border-radius: 0.5em;" class="form-control @error('tiket') is-invalid @enderror" name="tiket" value="{{$data->tiket}}">
-                @error('tiket')
+                <label for="kapasitas" class="form-label">Kapasitas</label>
+                <input type="text" style="border-radius: 0.5em;" class="form-control @error('kapasitas') is-invalid @enderror" name="kapasitas" value="{{$data->kapasitas}}">
+                @error('kapasitas')
                 <div class="invalid-feedback">
                     {{$message}}
                 </div>
                 @enderror
             </div>
-            <div class="mb-3">
-                <label for="latitude" class="form-label">Latitude</label>
-                <input type="text" style="border-radius: 0.5em;" class="form-control @error('latitude') is-invalid @enderror" name="latitude" value="{{$data->latitude}}">
-                @error('latitude')
-                <div class="invalid-feedback">
-                    {{$message}}
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="map2" style="height: 50vh; width: 100%;"></div>
                 </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="longitude" class="form-label">Longitude</label>
-                <input type="text" style="border-radius: 0.5em;" class="form-control @error('longitude') is-invalid @enderror" name="longitude" value="{{$data->longitude}}">
-                @error('longitude')
-                <div class="invalid-feedback">
-                    {{$message}}
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="latitude" class="form-label">Latitude</label>
+                        <input type="text" id="Lattitude" style="border-radius: 0.5em;" class="form-control @error('latitude') is-invalid @enderror" name="latitude" value="{{$data->latitude}}">
+                        @error('latitude')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="longitude" class="form-label">Longitude</label>
+                        <input type="text" id="Longitude" style="border-radius: 0.5em;" class="form-control @error('longitude') is-invalid @enderror" name="longitude" value="{{$data->longitude}}">
+                        @error('longitude')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                        @enderror
+                    </div>
+                    <button type="submit" style="border-radius: 0.5em;" class="btn btn-success">Submit</button>
                 </div>
-                @enderror
             </div>
-            <button type="submit" style="border-radius: 0.5em;" class="btn btn-success">Submit</button>
+
         </form>
     </section>
 </div>
@@ -100,6 +108,40 @@
 <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
 <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
 <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+<script>
+    var map = L.map('map2').setView([-7.677718722836917, 108.64768251433698], 13);
+
+    // google street
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    var marker = L.marker(["{{$data->latitude}}", "{{$data->longitude}}"]).addTo(map).bindPopup("{{$data->nama}}");
+
+    var popup = L.popup();
+
+    function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent("You clicked the map at " + e.latlng.toString())
+            .openOn(map);
+    }
+
+    map.on('click', onMapClick);
+
+    map.on('click', (e) => {
+        const longtitude = e.latlng.lat
+        const lattitude = e.latlng.lng
+
+        console.log({
+            longtitude,
+            lattitude
+        });
+        $("#Longitude").val(longtitude);
+        $("#Lattitude").val(lattitude);
+    })
+</script>
 
 <!-- Page Specific JS File -->
 <script src="{{ asset('js/page/index-0.js') }}"></script>

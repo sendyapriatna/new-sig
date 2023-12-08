@@ -11,7 +11,7 @@
                     </tr>
                     <tr>
                         <td>
-                            @include('layouts.map.map-gis2')
+                            @include('layouts.map.map-tikum')
                         </td>
                     </tr>
                 </table>
@@ -24,9 +24,6 @@
                         </th>
                     </tr>
                     <tr>
-                        <th colspan="2"><img style="width: 50%;border-radius: 0.5em;" src="/storage/{{$data->image}}"></th>
-                    </tr>
-                    <tr>
                         <th>Nama</th>
                         <td>{{$data->nama}}</td>
                     </tr>
@@ -36,15 +33,11 @@
                     </tr>
                     <tr>
                         <th>Description</th>
-                        <td>{{$data->deskripsi}}</td>
-                    </tr>
-                    <tr>
-                        <th>Contact</th>
-                        <td>{{$data->kontak}}</td>
+                        <td>{{$data->keterangan}}</td>
                     </tr>
                     <tr>
                         <th>ticket Price</th>
-                        <td>{{$data->tiket}}</td>
+                        <td>{{$data->kapasitas}}</td>
                     </tr>
                 </table>
             </div>

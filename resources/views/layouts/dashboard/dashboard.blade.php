@@ -37,10 +37,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Total Post</h4>
+                            <h4>Gathering Point</h4>
                         </div>
                         <div class="card-body">
-                            {{$location}}
+                            {{$tikum}}
                         </div>
                     </div>
                 </div>
@@ -48,14 +48,14 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-warning">
-                        <i class="far fa-file"></i>
+                        <i class='fas fa-home'></i>
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Soon</h4>
+                            <h4>Shelter</h4>
                         </div>
                         <div class="card-body">
-                            0
+                            {{$shelter}}
                         </div>
                     </div>
                 </div>
@@ -77,12 +77,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm">
+            <div class="col-md-6 col-sm-6 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Latest Posts</h4>
+                        <h4>Gathering Point</h4>
                         <div class="card-header-action">
-                            <a href="#" class="btn btn-primary">View All</a>
+                            <a href="{{ url('tikum/create') }}" class="btn btn-primary">Add Data</a>
                         </div>
                     </div>
                     <div class="card-body p-0">
@@ -92,25 +92,69 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Name</th>
-                                        <th>Ticket</th>
-                                        <th>Latitude</th>
-                                        <th>Longitude</th>
+                                        <th>Capacity</th>
+                                        <th>Description</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($location_tables as $index => $item)
+                                    @foreach($tikum_tables as $index => $item)
                                     <tr>
                                         <td>{{$index+1}}</td>
                                         <td>{{$item->nama}}</td>
-                                        <td>Rp.{{$item->tiket}}</td>
-                                        <td>{{$item->latitude}}</td>
-                                        <td>{{$item->longitude}}</td>
+                                        <td>{{$item->kapasitas}}</td>
+                                        <td>{{$item->keterangan}}</td>
                                         <td>
                                             <div class="row">
-                                                <a href="/dashboard/detail/{{ $item->id}}" style="border-radius: 0.5em;" class="btn btn-primary mr-1">Detail</a>
-                                                <a href="/dashboard/edit/{{ $item->id}}" style="border-radius: 0.5em;" class="btn btn-warning mr-1">Edit</a>
-                                                <a href="/dashboard/delete/{{ $item->id}}" style="border-radius: 0.5em;" class="btn btn-danger">Delete</a>
+                                                <a href="/tikum/detail/{{ $item->id}}" style="border-radius: 0.5em;" class="btn btn-primary mr-1"><i class="fa-solid fa-circle-info"></i></a>
+                                                <a href="/tikum/edit/{{ $item->id}}" style="border-radius: 0.5em;" class="btn btn-warning mr-1"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a href="/tikum/delete/{{ $item->id}}" style="border-radius: 0.5em;" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                            </div>
+                                        </td>
+                                        <!-- <td>
+                                            <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                            <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
+                                        </td> -->
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Data Shelter</h4>
+                        <div class="card-header-action">
+                            <a href="{{ url('shelter/create') }}" class="btn btn-primary">Add Data</a>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table-striped mb-0 table">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Name</th>
+                                        <th>Capacity</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($shelter_tables as $index => $item2)
+                                    <tr>
+                                        <td>{{$index+1}}</td>
+                                        <td>{{$item2->nama}}</td>
+                                        <td>{{$item2->kapasitas}}</td>
+                                        <td>{{$item2->keterangan}}</td>
+                                        <td>
+                                            <div class="row">
+                                                <a href="/shelter/detail/{{ $item2->id}}" style="border-radius: 0.5em;" class="btn btn-primary mr-1"><i class="fa-solid fa-circle-info"></i></a>
+                                                <a href="/shelter/edit/{{ $item2->id}}" style="border-radius: 0.5em;" class="btn btn-warning mr-1"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a href="/shelter/delete/{{ $item2->id}}" style="border-radius: 0.5em;" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                                             </div>
                                         </td>
                                         <!-- <td>

@@ -3,27 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Location;
-use App\Models\Shelter;
-use App\Models\Tikum;
+use App\Models\tikum;
 use Illuminate\Support\Facades\DB;
 
-class DashboardController extends Controller
+class TikumController extends Controller
 {
     public function index()
     {
-        $users = DB::table('users')->count();
-        $tikum = DB::table('tikum_tables')->count();
-        $shelter = DB::table('shelter_tables')->count();
-        return view('layouts.dashboard.dashboard', ['tikum_tables' => Tikum::orderBy('id', 'desc')->paginate(10), 'shelter_tables' => Shelter::orderBy('id', 'desc')->paginate(10)], compact('users', 'tikum', 'shelter'));
-    }
-    // public function index2()
-    // {
-    //     return view('layouts.content.db-data', ['location_tables' => Location::orderBy('id', 'desc')->paginate(7)]);
-    // }
-    public function index3()
-    {
-        return view('layouts.content.db-add-data');
+        return view('layouts.content.tikum.tikum-create');
     }
     public function store(Request $request)
     {
@@ -32,16 +19,11 @@ class DashboardController extends Controller
             'latitude' => 'required',
             'longitude' => 'required',
             'alamat' => 'required',
-            'deskripsi' => 'required',
-            'kontak' => 'required',
-            'tiket' => 'required',
-            'image' => 'image|file|max:2048',
+            'keterangan' => 'required',
+            'kapasitas' => 'required',
         ]);
 
-        if ($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('post-image');
-        }
-        $post = Location::Create($validatedData);
+        $post = Tikum::Create($validatedData);
 
         if ($post) {
             return redirect('/dashboard')
@@ -59,8 +41,8 @@ class DashboardController extends Controller
     }
     public function update($id)
     {
-        $data = DB::table('location_tables')->where('id', $id)->first();
-        return view('layouts.content.db-edit-data', ['data' => $data]);
+        $data = DB::table('tikum_tables')->where('id', $id)->first();
+        return view('layouts.content.tikum.tikum-edit', ['data' => $data]);
     }
     public function updated(Request $request)
     {
@@ -69,19 +51,17 @@ class DashboardController extends Controller
             'latitude' => 'required',
             'longitude' => 'required',
             'alamat' => 'required',
-            'deskripsi' => 'required',
-            'kontak' => 'required',
-            'tiket' => 'required',
+            'keterangan' => 'required',
+            'kapasitas' => 'required',
         ]);
 
-        $post = DB::table('location_tables')->where('id', $request->id)->update([
+        $post = DB::table('tikum_tables')->where('id', $request->id)->update([
             'nama' => $request->nama,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
             'alamat' => $request->alamat,
-            'deskripsi' => $request->deskripsi,
-            'kontak' => $request->kontak,
-            'tiket' => $request->tiket,
+            'keterangan' => $request->keterangan,
+            'kapasitas' => $request->kapasitas,
 
         ]);
         if ($post) {
@@ -100,7 +80,7 @@ class DashboardController extends Controller
     }
     public function delete($id)
     {
-        $post = DB::table('location_tables')->where('id', $id)->delete();
+        $post = DB::table('tikum_tables')->where('id', $id)->delete();
         if ($post) {
             return redirect('/dashboard')
                 ->with([
@@ -117,7 +97,7 @@ class DashboardController extends Controller
     }
     public function detail($id)
     {
-        $data = DB::table('location_tables')->where('id', $id)->first();
-        return view('layouts.content.db-detail-data', ['data' => $data]);
+        $data = DB::table('tikum_tables')->where('id', $id)->first();
+        return view('layouts.content.tikum.tikum-detail', ['data' => $data]);
     }
 }

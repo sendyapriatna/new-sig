@@ -32,16 +32,16 @@
                 <input type="text" style="border-radius: 0.5em;" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{$data->alamat}}" readonly>
             </div>
             <div class="mb-3">
-                <label for="deskripsi" class="form-label">Deskripsi</label>
-                <input type="text" style="border-radius: 0.5em;" class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" value="{{$data->deskripsi}}" readonly>
+                <label for="keterangan" class="form-label">Keterangan</label>
+                <input type="text" style="border-radius: 0.5em;" class="form-control @error('Keterangan') is-invalid @enderror" name="keterangan" value="{{$data->keterangan}}" readonly>
             </div>
             <div class="mb-3">
                 <label for="kontak" class="form-label">Contact</label>
                 <input type="text" style="border-radius: 0.5em;" class="form-control @error('kontak') is-invalid @enderror" name="kontak" value="{{$data->kontak}}" readonly>
             </div>
             <div class="mb-3">
-                <label for="tiket" class="form-label">Harga Tiket</label>
-                <input type="text" style="border-radius: 0.5em;" class="form-control @error('tiket') is-invalid @enderror" name="tiket" value="{{$data->tiket}}" readonly>
+                <label for="kapasitas" class="form-label">Kapasitas</label>
+                <input type="text" style="border-radius: 0.5em;" class="form-control @error('kapasitas') is-invalid @enderror" name="kapasitas" value="{{$data->kapasitas}}" readonly>
             </div>
             <div class="mb-3">
                 <label for="latitude" class="form-label">Latitude</label>

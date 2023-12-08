@@ -18,6 +18,11 @@ class MapGisController extends Controller
         $result = DB::table('location_tables')->select('id', 'nama', 'latitude', 'longitude', 'alamat', 'tiket', 'image')->get();
         return json_encode($result);
     }
+    public function titikShelter()
+    {
+        $result = DB::table('shelter_tables')->select('id', 'nama', 'latitude', 'longitude', 'alamat', 'keterangan', 'kapasitas', 'image')->get();
+        return json_encode($result);
+    }
 
     // buat cek dump (gak butuh)
     public function lokasi($id = '')

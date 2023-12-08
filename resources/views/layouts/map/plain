@@ -1,0 +1,37 @@
+<div class="text-center">
+    ini heatmap
+    <div id="map1" style="height: 95vh; width: 100%"></div>
+</div>
+
+<script>
+    var map = L.map("map1").setView([-7.6532699, 108.6221973], 13);
+    map.createPane("labels");
+
+    var positron = L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
+        {
+            attribution: "©OpenStreetMap, ©CartoDB",
+        }
+    ).addTo(map);
+
+    var positronLabels = L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png",
+        {
+            attribution: "©OpenStreetMap, ©CartoDB",
+            pane: "labels",
+        }
+    ).addTo(map);
+    var heat = L.heatLayer(
+        [
+            [-7.681841658972135, 108.65034764703253, 0.5], // lat, lng, intensity
+            [-7.681841658972135, 108.65034764703253, 0.5],
+        ],
+        {
+            radius: 40,
+        }
+    ).addTo(map);
+    var geojson = L.geoJson(GeoJsonData, geoJsonOptions).addTo(map);
+</script>
+
+/* global statesData */ const geojson = L.geoJson(statesData, { style,
+onEachFeature }).addTo(map);

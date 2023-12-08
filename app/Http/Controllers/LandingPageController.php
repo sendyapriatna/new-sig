@@ -13,9 +13,27 @@ class LandingPageController extends Controller
         $location = DB::table('location_tables')->count();
         return view('layouts.dashboard.landing-page', compact('location'));
     }
+    public function index2()
+    {
+        $location = DB::table('location_tables')->count();
+        return view('layouts.dashboard.welcome', compact('location'));
+    }
+
     public function titik()
     {
         $result = DB::table('location_tables')->select('id', 'nama', 'latitude', 'longitude', 'alamat', 'tiket', 'image')->get();
+        return json_encode($result);
+    }
+
+    public function titikShelter()
+    {
+        $result = DB::table('shelter_tables')->select('id', 'nama', 'latitude', 'longitude', 'alamat', 'keterangan', 'kapasitas', 'image')->get();
+        return json_encode($result);
+    }
+
+    public function titikTikum()
+    {
+        $result = DB::table('tikum_tables')->select('id', 'nama', 'latitude', 'longitude', 'alamat', 'keterangan', 'kapasitas')->get();
         return json_encode($result);
     }
 

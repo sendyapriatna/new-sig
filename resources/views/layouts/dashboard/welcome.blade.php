@@ -1,5 +1,7 @@
 @include('layouts.app3')
 
+@section('title3', 'Landing Page')
+
 <div class="container-fluid">
     <div class="mt-4 px-5">
         <h2 class="section-title text-white px-5">PangandaranWEBGIS</h2>

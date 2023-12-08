@@ -1,6 +1,6 @@
 @extends('layouts.app2')
 
-@section('title', 'Create New Post')
+@section('title2', 'Draw Map')
 
 @push('style')
 <!-- CSS Libraries -->
@@ -20,7 +20,13 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
+        <h2 class="section-title">Buat Titik Polygon</h2>
         <div id="map2" style="height: 70vh; width: 100%;"></div>
+        <form action="/draw/add" method="post" enctype="multipart/form-data">
+            @csrf
+            <textarea name="polygon" id="polygon" style="width: 100vh; height:20vh;"></textarea>
+            <button type="submit" style="border-radius: 0.5em;" class="btn btn-success p-3 px-5 py-3">Submit</button>
+        </form>
     </section>
 </div>
 @endsection
@@ -42,68 +48,38 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-
-    var popup = L.popup();
-
-    function onMapClick(e) {
-        popup
-            .setLatLng(e.latlng)
-            .setContent("You clicked the map at " + e.latlng.toString())
-            .openOn(map);
-    }
-
-    map.on('click', onMapClick);
-
     // Leaflet Draw Plugin
-    var drawnFeatures = new L.FeatureGroup();
-    map.addLayer(drawnFeatures);
+    var drawnItems = new L.FeatureGroup();
+    map.addLayer(drawnItems);
 
     var drawControl = new L.Control.Draw({
+
         position: "topright",
-        edit: {
-            featureGroup: drawnFeatures,
-        },
         draw: {
+            polyline: false,
+
+            circle: false,
             polygon: {
-                shapeOptions: {
-                    color: "purple"
-                }
-            },
-            polyline: {
-                shapeOptions: {
-                    color: "red"
-                }
-            },
-            rectangle: {
-                shapeOptions: {
-                    color: "green"
-                }
-            },
-            circle: {
                 shapeOptions: {
                     color: "steelblue"
                 }
             },
         },
+        edit: {
+            featureGroup: drawnItems,
+        }
     });
     map.addControl(drawControl);
-
     map.on("draw:created", function(e) {
         var type = e.layerType;
         var layer = e.layer;
-        console.log(layer.toGeoJSON());
 
-        layer.bindPopup(`<p>${JSON.stringify(layer.toGeoJSON())}</p>`)
-        drawnFeatures.addLayer(layer);
-    });
+        var latlng = layer.getLatLngs()[0];
 
-    map.on("draw:edited", function(e) {
-        var layers = e.layers;
-        var type = e.layerType;
 
-        layers.eachLayer(function(layer) {
-            console.log(layer);
-        })
+        $("#polygon").val(JSON.stringify(latlng));
+
+        drawnItems.addLayer(layer);
     });
 </script>
 

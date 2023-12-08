@@ -1,6 +1,6 @@
 @extends('layouts.app2')
 
-@section('title', 'Create New Post')
+@section('title2', 'Tikum Create')
 
 @push('style')
 <!-- CSS Libraries -->
@@ -138,8 +138,8 @@
     map.on('click', onMapClick);
 
     map.on('click', (e) => {
-        const longtitude = e.latlng.lat
-        const lattitude = e.latlng.lng
+        const longtitude = e.latlng.lng
+        const lattitude = e.latlng.lat
 
         console.log({
             longtitude,

@@ -133,27 +133,6 @@
         });
     });
 
-
-
-    // EXAMPLE POLYGON LATLNG
-    // const polygon = L.polygon([
-    //     [-7.670233268313565, 108.63824113892787], // LAT, LNG
-    //     [-7.680440673620556, 108.6575530431738],
-    //     [-7.689074245854085, 108.65158781052894],
-    //     [-7.681248749402704, 108.63068803860058]
-    // ]);
-
-    // STYLE POLYGON
-    // polygon.setStyle({
-    //     fillColor: '#ff0000', // FILL COLOR
-    //     weight: 2,
-    //     opacity: 1,
-    //     color: '#ff0000', // OUTLINE COLOR
-    //     fillOpacity: 0.6 // OPACITY
-    // });
-
-
-
     // POLYGON PETA DANGER
     const petaDanger = L.geoJSON(tsunamiData, {
         style: function(feature) {
@@ -326,6 +305,26 @@
 
     // SEARCH BOX
     // L.Control.geocoder().addTo(map);
+
+    // EXAMPLE POLYGON LATLNG
+
+
+
+    const polygon = L.polygon([
+        [-7.670233268313565, 108.63824113892787], // LAT, LNG
+        [-7.680440673620556, 108.6575530431738],
+        [-7.689074245854085, 108.65158781052894],
+        [-7.681248749402704, 108.63068803860058]
+    ]).addTo(map);
+
+    // STYLE POLYGON
+    polygon.setStyle({
+        fillColor: '#ff0000', // FILL COLOR
+        weight: 2,
+        opacity: 1,
+        color: '#ff0000', // OUTLINE COLOR
+        fillOpacity: 0.6 // OPACITY
+    });
 
     layerControl.addOverlay(geojson, 'Peta Kerusakan');
     // layerControl.addOverlay(petaDanger, 'Danger');

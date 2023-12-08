@@ -1,6 +1,6 @@
 @extends('layouts.app2')
 
-@section('title', 'Edit Post')
+@section('title2', 'Tikum Edit')
 
 @push('style')
 <!-- CSS Libraries -->
@@ -12,7 +12,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Edit Post</h1>
+            <h1>Edit Gathering Point</h1>
         </div>
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -121,8 +121,8 @@
     map.on('click', onMapClick);
 
     map.on('click', (e) => {
-        const longtitude = e.latlng.lat
-        const lattitude = e.latlng.lng
+        const longtitude = e.latlng.lng
+        const lattitude = e.latlng.lat
 
         console.log({
             longtitude,

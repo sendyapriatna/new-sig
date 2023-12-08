@@ -34,4 +34,7 @@
 </script>
 
 /* global statesData */ const geojson = L.geoJson(statesData, { style,
-onEachFeature }).addTo(map);
+onEachFeature }).addTo(map); var latlng = ['null', 'null']; var index; for
+(index = 0; index < 5; index++) { if (index == 0) { latlng =
+layer.getLatLngs()[0][index]; console.log(latlng); } else if (index % 2 == 0) {
+latlng = layer.getLatLngs()[0][index]; console.log(latlng); } };

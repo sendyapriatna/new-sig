@@ -1,6 +1,6 @@
 @extends('layouts.app2')
 
-@section('title', 'Detail Post')
+@section('title2', 'Tikum Detail')
 
 @push('style')
 <!-- CSS Libraries -->
@@ -12,7 +12,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Detail Post</h1>
+            <h1>Detail Gathering Point</h1>
         </div>
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

@@ -22,8 +22,9 @@ use App\Http\Controllers\MapGisController;
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/landing-page', [App\Http\Controllers\LandingPageController::class, 'index']);
+// Route::get('/landing-page', [App\Http\Controllers\LandingPageController::class, 'index']);
 // Route::get('/', [App\Http\Controllers\LandingPageController::class, 'index']);
+Route::get('/landing-page', [App\Http\Controllers\LandingPageController::class, 'index2']);
 Route::get('/', [App\Http\Controllers\LandingPageController::class, 'index2']);
 // Route::get('/', [App\Http\Controllers\MainMapController::class, 'index']);
 Route::get('/titik/json', [App\Http\Controllers\LandingPageController::class, 'titik']); // buat cek dump (gak butuh)
@@ -65,9 +66,9 @@ Route::get('/tikum/delete/{id}', [App\Http\Controllers\TikumController::class, '
 Route::get('/tikum/detail/{id}', [App\Http\Controllers\TikumController::class, 'detail'])->middleware('auth');
 
 // Dashboard Draw
-Route::get('/draw/create', [App\Http\Controllers\DrawController::class, 'index'])->middleware('auth');
-Route::post('/draw/add', [App\Http\Controllers\DrawController::class, 'store'])->middleware('auth');
-Route::get('/draw/edit/{id}', [App\Http\Controllers\DrawController::class, 'update'])->middleware('auth');
-Route::post('/draw/update', [App\Http\Controllers\DrawController::class, 'updated'])->middleware('auth');
-Route::get('/draw/delete/{id}', [App\Http\Controllers\DrawController::class, 'delete'])->middleware('auth');
-Route::get('/draw/detail/{id}', [App\Http\Controllers\DrawController::class, 'detail'])->middleware('auth');
+Route::get('/draw/create', [App\Http\Controllers\PolygonController::class, 'index'])->middleware('auth');
+Route::post('/draw/add', [App\Http\Controllers\PolygonController::class, 'store'])->middleware('auth');
+Route::get('/draw/edit/{id}', [App\Http\Controllers\PolygonController::class, 'update'])->middleware('auth');
+Route::post('/draw/update', [App\Http\Controllers\PolygonController::class, 'updated'])->middleware('auth');
+Route::get('/draw/delete/{id}', [App\Http\Controllers\PolygonController::class, 'delete'])->middleware('auth');
+Route::get('/draw/detail', [App\Http\Controllers\PolygonController::class, 'detail'])->middleware('auth');

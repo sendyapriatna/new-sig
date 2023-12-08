@@ -14,6 +14,7 @@ class ShelterController extends Controller
     }
     public function store(Request $request)
     {
+
         $validatedData = $request->validate([
             'nama' => 'required|string|min:5',
             'latitude' => 'required',
@@ -24,6 +25,7 @@ class ShelterController extends Controller
             'kapasitas' => 'required',
             'image' => 'image|file|max:2048',
         ]);
+
 
         if ($request->file('image')) {
             $validatedData['image'] = $request->file('image')->store('post-image');
@@ -60,7 +62,12 @@ class ShelterController extends Controller
             'keterangan' => 'required',
             'kontak' => 'required',
             'kapasitas' => 'required',
+            'image' => 'image|file|max:2048',
         ]);
+
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('post-image');
+        }
 
         $post = DB::table('shelter_tables')->where('id', $request->id)->update([
             'nama' => $request->nama,
@@ -70,8 +77,10 @@ class ShelterController extends Controller
             'keterangan' => $request->keterangan,
             'kontak' => $request->kontak,
             'kapasitas' => $request->kapasitas,
+            'image' => $request->file('image')->store('post-image')
 
         ]);
+
         if ($post) {
             return redirect('/dashboard')
                 ->with([

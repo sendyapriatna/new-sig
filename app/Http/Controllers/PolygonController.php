@@ -17,6 +17,7 @@ class PolygonController extends Controller
     {
         $validatedData = $request->validate([
             'polygon' => 'required',
+            'tipe' => 'required',
         ]);
 
         $post = Polygon::Create($validatedData);

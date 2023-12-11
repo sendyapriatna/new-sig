@@ -10,7 +10,8 @@ class Polygon extends Model
     protected $table = "polygon_tables";
     protected $fillable = [
         'id',
-        'polygon'
+        'polygon',
+        'tipe'
     ];
     use HasFactory;
 }

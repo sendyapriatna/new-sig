@@ -133,7 +133,32 @@
         });
     });
 
-    // POLYGON PETA DANGER
+
+    // DRAW POLYGON 
+    const Polygon = L.layerGroup();
+    $(document).ready(function() {
+        $.getJSON('titikPolygon/json', function(data) {
+            $.each(data, function(index) {
+                if ([data[index].tipe] == 'sbahaya') {
+                    L.polygon(JSON.parse([data[index].polygon]), {
+                        color: 'red'
+                    }).addTo(Polygon).bindTooltip('Zona Sangat Berbahaya');
+                } else if ([data[index].tipe] == 'bahaya') {
+                    L.polygon(JSON.parse([data[index].polygon]), {
+                        color: 'yellow'
+                    }).addTo(Polygon).bindTooltip('Zona Berbahaya');
+                } else {
+                    L.polygon(JSON.parse([data[index].polygon]), {
+                        color: 'green'
+                    }).addTo(Polygon).bindTooltip('Zona Aman');
+                }
+                // console.log(JSON.parse([data[index].polygon]));
+
+            });
+        });
+    });
+
+    // POLYGON PETA DANGER CONTOH JSON (UDAH JADI)
     const petaDanger = L.geoJSON(tsunamiData, {
         style: function(feature) {
             switch (feature.properties.party) {
@@ -150,9 +175,6 @@
     });
     // END POLYGON PETA DANGER
 
-    // POPUP POLYGON
-    petaDanger.bindPopup("Tidak Berisiko!");
-
     var baseMaps = {
         "Open Street Map": osm,
         "Dark": CartoDB_DarkMatter,
@@ -164,13 +186,14 @@
     const map = L.map('map', {
         center: [-7.686146052364736, 108.57400527343061],
         zoom: 12,
-        layers: [osm, petaDanger, shelter, tikum]
+        layers: [osm, shelter, tikum, Polygon]
     });
 
     var overlayMaps = {
         "Lokasi Shelter": shelter,
         "Titik Kumpul": tikum,
-        "Peta Risiko Tsunami": petaDanger
+        "Peta Bahaya": Polygon,
+        "Peta Bahaya (Contoh)": petaDanger
     };
 
 
@@ -302,32 +325,28 @@
 
     // ADD TO LAYER
     const layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+    layerControl.addOverlay(geojson, 'Peta Kerusakan');
+    // layerControl.addOverlay(petaDanger, 'Danger');
+    // layerControl.addOverlay(shelter, 'Lokasi Shelter');
+    // layerControl.addOverlay(tikum, 'Lokasi Titik Kumpul');
 
     // SEARCH BOX
     // L.Control.geocoder().addTo(map);
 
     // EXAMPLE POLYGON LATLNG
-
-
-
-    const polygon = L.polygon([
-        [-7.670233268313565, 108.63824113892787], // LAT, LNG
-        [-7.680440673620556, 108.6575530431738],
-        [-7.689074245854085, 108.65158781052894],
-        [-7.681248749402704, 108.63068803860058]
-    ]).addTo(map);
+    // const polygon = L.polygon([
+    //     [-7.670233268313565, 108.63824113892787], // LAT, LNG
+    //     [-7.680440673620556, 108.6575530431738],
+    //     [-7.689074245854085, 108.65158781052894],
+    //     [-7.681248749402704, 108.63068803860058]
+    // ]).addTo(map);
 
     // STYLE POLYGON
-    polygon.setStyle({
-        fillColor: '#ff0000', // FILL COLOR
-        weight: 2,
-        opacity: 1,
-        color: '#ff0000', // OUTLINE COLOR
-        fillOpacity: 0.6 // OPACITY
-    });
-
-    layerControl.addOverlay(geojson, 'Peta Kerusakan');
-    // layerControl.addOverlay(petaDanger, 'Danger');
-    // layerControl.addOverlay(shelter, 'Lokasi Shelter');
-    // layerControl.addOverlay(tikum, 'Lokasi Titik Kumpul');
+    // polygon.setStyle({
+    //     fillColor: '#ff0000', // FILL COLOR
+    //     weight: 2,
+    //     opacity: 1,
+    //     color: '#ff0000', // OUTLINE COLOR
+    //     fillOpacity: 0.6 // OPACITY
+    // });
 </script>

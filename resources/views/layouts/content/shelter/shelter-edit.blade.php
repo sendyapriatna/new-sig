@@ -20,7 +20,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
-        <form action="/shelter/update" method="post">
+        <form action="/shelter/update" method="post" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
             <input type="hidden" id="id" name="id" value="{{ $data->id}}" class="form-control select2">
             <h2 class="section-title">Pilih Titik</h2>
@@ -29,7 +29,7 @@
             <section class="card mt-5 p-3">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="mb-3">
+                        <div class="col p-3">
                             <label for="nama" class="form-label">Nama Tempat</label>
                             <input type="text" style="border-radius: 0.5em;" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{$data->nama}}">
                             @error('nama')
@@ -38,7 +38,7 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        <div class="col p-3">
                             <label for="alamat" class="form-label">Alamat</label>
                             <input type="text" style="border-radius: 0.5em;" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{$data->alamat}}">
                             @error('alamat')
@@ -47,7 +47,7 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        <div class="col p-3">
                             <label for="keterangan" class="form-label">Keterangan</label>
                             <input type="text" style="border-radius: 0.5em;" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan" value="{{$data->keterangan}}">
                             @error('keterangan')
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="mb-3">
+                        <div class="col p-3">
                             <label for="kontak" class="form-label">Contact</label>
                             <input type="text" style="border-radius: 0.5em;" class="form-control @error('kontak') is-invalid @enderror" name="kontak" value="{{$data->kontak}}">
                             @error('kontak')
@@ -67,7 +67,7 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        <div class="col p-3">
                             <label for="kapasitas" class="form-label">Kapasitas</label>
                             <input type="text" style="border-radius: 0.5em;" class="form-control @error('kapasitas') is-invalid @enderror" name="kapasitas" value="{{$data->kapasitas}}">
                             @error('kapasitas')
@@ -76,9 +76,25 @@
                             </div>
                             @enderror
                         </div>
+                        <div class="col p-3">
+                            <label for="image" class="form-label @error('image') is-invalid @enderror">Post Image</label>
+                            <input type="hidden" name="oldImage" value="{{$data->image}}">
+                            @if($data->image)
+                            <img src="/storage/{{$data->image}}" alt="" class="img-preview img-fluid mb-3 d-block">
+                            @else
+                            <img src="" alt="" class="img-preview img-fluid col p-3">
+                            @endif
+
+                            <input type="file" class="form-control" id="image" name="image" onchange="previewImage()">
+                            @error('image')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="mb-3">
+                        <div class="col p-3">
                             <label for="latitude" class="form-label">Latitude</label>
                             <input type="text" id="Lattitude" style="border-radius: 0.5em;" class="form-control @error('latitude') is-invalid @enderror" name="latitude" value="{{$data->latitude}}">
                             @error('latitude')
@@ -87,7 +103,7 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        <div class="col p-3">
                             <label for="longitude" class="form-label">Longitude</label>
                             <input type="text" id="Longitude" style="border-radius: 0.5em;" class="form-control @error('longitude') is-invalid @enderror" name="longitude" value="{{$data->longitude}}">
                             @error('longitude')
@@ -151,6 +167,21 @@
         $("#Longitude").val(longtitude);
         $("#Lattitude").val(lattitude);
     })
+
+    // IMAGE PREVIEW
+    function previewImage() {
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
 </script>
 
 <!-- Page Specific JS File -->

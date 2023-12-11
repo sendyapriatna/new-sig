@@ -27,10 +27,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/landing-page', [App\Http\Controllers\LandingPageController::class, 'index2']);
 Route::get('/', [App\Http\Controllers\LandingPageController::class, 'index2']);
 // Route::get('/', [App\Http\Controllers\MainMapController::class, 'index']);
-Route::get('/titik/json', [App\Http\Controllers\LandingPageController::class, 'titik']); // buat cek dump (gak butuh)
-Route::get('/titikShelter/json', [App\Http\Controllers\LandingPageController::class, 'titikShelter']); // buat cek dump (gak butuh)
-Route::get('/titikTikum/json', [App\Http\Controllers\LandingPageController::class, 'titikTikum']); // buat cek dump (gak butuh)
-Route::get('/lokasi/json/{id}', [App\Http\Controllers\LandingPageController::class, 'lokasi']); // buat cek dump (gak butuh)
+Route::get('/titik/json', [App\Http\Controllers\LandingPageController::class, 'titik']); //cek vardump
+Route::get('/titikShelter/json', [App\Http\Controllers\LandingPageController::class, 'titikShelter']); //cek vardump
+Route::get('/titikTikum/json', [App\Http\Controllers\LandingPageController::class, 'titikTikum']); //cek vardump
+Route::get('/titikPolygon/json', [App\Http\Controllers\LandingPageController::class, 'titikPolygon']); //cek vardump
+Route::get('/lokasi/json/{id}', [App\Http\Controllers\LandingPageController::class, 'lokasi']);
 Route::get('/main-ancaman-kerusakan', [App\Http\Controllers\MainMapController::class, 'index']);
 Route::get('/map', [App\Http\Controllers\MapGisController::class, 'index']);
 // Route::get('/map2', [App\Http\Controllers\MapGisController::class, 'index']);

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="text-center">
-        <div id="map" style="height: 50vh; width: 50vh;"></div>
+        <div id="map" style="height: 50vh; width: 80vh;"></div>
 
     </div>
 </div>

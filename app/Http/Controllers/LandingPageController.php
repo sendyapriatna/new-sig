@@ -37,6 +37,13 @@ class LandingPageController extends Controller
         return json_encode($result);
     }
 
+    public function titikPolygon()
+    {
+        $result = DB::table('polygon_tables')->select('id', 'polygon', 'tipe')->get();
+
+        return json_encode($result);
+    }
+
     // buat cek dump (gak butuh)
     public function lokasi($id = '')
     {

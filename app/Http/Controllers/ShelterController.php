@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Shelter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ShelterController extends Controller
 {
@@ -66,6 +67,9 @@ class ShelterController extends Controller
         ]);
 
         if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
             $validatedData['image'] = $request->file('image')->store('post-image');
         }
 

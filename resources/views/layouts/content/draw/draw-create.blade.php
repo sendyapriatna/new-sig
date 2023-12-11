@@ -12,7 +12,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Draw Polygon, Polyline, Circle, and Marker</h1>
+            <h1>Draw Polygon</h1>
         </div>
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -20,12 +20,21 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
-        <h2 class="section-title">Buat Titik Polygon</h2>
+        <!-- <h2 class="section-title">Buat Titik Polygon</h2> -->
         <div id="map2" style="height: 70vh; width: 100%;"></div>
         <form action="/draw/add" method="post" enctype="multipart/form-data">
             @csrf
-            <textarea name="polygon" id="polygon" style="width: 100vh; height:20vh;"></textarea>
-            <button type="submit" style="border-radius: 0.5em;" class="btn btn-success p-3 px-5 py-3">Submit</button>
+            <input type="hidden" name="polygon" id="polygon">
+            <div class="input-group mt-3">
+                <label class="input-group-text" for="inputGroupSelect01">Tingkat Bahaya</label>
+                <select class="form-select" name="tipe" id="tipe">
+                    <option disabled selected>Pilih Tingkat Bahaya</option>
+                    <option class="bg-danger mr-1 p-2" value="sbahaya">Zona Sangat Berbahaya</option>
+                    <option class="bg-warning mr-1 p-2" value="bahaya">Zona Berbahaya</option>
+                    <option class="bg-success mr-1 p-2" value="aman">Zona Aman</option>
+                </select>
+            </div>
+            <button type="submit" style="border-radius: 0.5em;" class="btn btn-success p-3 px-5 py-3 mt-3">Submit</button>
         </form>
     </section>
 </div>
@@ -42,7 +51,6 @@
 <script>
     var map = L.map('map2').setView([-7.677718722836917, 108.64768251433698], 13);
 
-    // google street
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -76,7 +84,7 @@
 
         var latlng = layer.getLatLngs()[0];
 
-
+        console.log(layer.getLatLngs());
         $("#polygon").val(JSON.stringify(latlng));
 
         drawnItems.addLayer(layer);

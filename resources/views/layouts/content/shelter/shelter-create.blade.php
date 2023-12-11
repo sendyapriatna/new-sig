@@ -77,7 +77,8 @@
                         </div>
                         <div class="col p-3">
                             <label for="image" class="form-label @error('image') is-invalid @enderror">Post Image</label>
-                            <input type="file" class="form-control" id="image" name="image">
+                            <img src="" alt="" class="img-preview img-fluid mb-3">
+                            <input type="file" class="form-control" id="image" name="image" onchange="previewImage()">
                             @error('image')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -158,6 +159,22 @@
         $("#Longitude").val(longtitude);
         $("#Lattitude").val(lattitude);
     })
+
+
+    // IMAGE PREVIEW
+    function previewImage() {
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
 </script>
 
 

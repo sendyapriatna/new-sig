@@ -16,6 +16,7 @@ class Tikum extends Model
         'alamat',
         'keterangan',
         'kapasitas',
+        'image'
     ];
     use HasFactory;
 }

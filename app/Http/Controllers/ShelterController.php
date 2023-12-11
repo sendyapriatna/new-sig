@@ -11,6 +11,7 @@ class ShelterController extends Controller
 {
     public function index()
     {
+        $this->authorize('admin');
         return view('layouts.content.shelter.shelter-create');
     }
     public function store(Request $request)
@@ -35,21 +36,16 @@ class ShelterController extends Controller
         $post = Shelter::Create($validatedData);
 
         if ($post) {
-            return redirect('/dashboard')
-                ->with([
-                    'success' => 'New post has been created!'
-                ]);
+            return redirect('/dashboard')->with('toast_success', 'Task Created Successfully!');
         } else {
             return redirect()
                 ->back()
-                ->withInput()
-                ->with([
-                    'error' => 'Some problem occurred, please try again'
-                ]);
+                ->withInput()->with('toast_warning', 'Some problem occurred, please try again');
         }
     }
     public function update($id)
     {
+        $this->authorize('admin');
         $data = DB::table('shelter_tables')->where('id', $id)->first();
         return view('layouts.content.shelter.shelter-edit', ['data' => $data]);
     }
@@ -86,38 +82,28 @@ class ShelterController extends Controller
         ]);
 
         if ($post) {
-            return redirect('/dashboard')
-                ->with([
-                    'success' => 'Post has been updated!'
-                ]);
+            return redirect('/dashboard')->with('toast_success', 'Task Updated Successfully!');
         } else {
             return redirect()
                 ->back()
-                ->withInput()
-                ->with([
-                    'error' => 'Some problem occurred, please try again'
-                ]);
+                ->withInput()->with('toast_warning', 'Some problem occurred, please try again');
         }
     }
     public function delete($id)
     {
+        $this->authorize('admin');
         $post = DB::table('shelter_tables')->where('id', $id)->delete();
         if ($post) {
-            return redirect('/dashboard')
-                ->with([
-                    'success' => 'Post has been deleted!'
-                ]);
+            return redirect('/dashboard')->with('toast_success', 'Task Deleted Successfully!');
         } else {
             return redirect()
                 ->back()
-                ->withInput()
-                ->with([
-                    'error' => 'Some problem occurred, please try again'
-                ]);
+                ->withInput()->with('toast_warning', 'Some problem occurred, please try again');
         }
     }
     public function detail($id)
     {
+        $this->authorize('admin');
         $data = DB::table('shelter_tables')->where('id', $id)->first();
         return view('layouts.content.shelter.shelter-detail', ['data' => $data]);
     }

@@ -141,16 +141,28 @@
             $.each(data, function(index) {
                 if ([data[index].tipe] == 'sbahaya') {
                     L.polygon(JSON.parse([data[index].polygon]), {
-                        color: 'red'
-                    }).addTo(Polygon).bindTooltip('Zona Sangat Berbahaya');
+                        color: 'red',
+                        weight: 5,
+                        opacity: 0.3
+                    }).addTo(Polygon).bindPopup("@can('admin') <a class = 'btn btn-danger'style = 'color:#fff;'href = " + '/draw/delete/' + data[index].id + " > Delete Polygon </a> @endcan").bindTooltip('Zona Sangat Berbahaya', {
+                        direction: "center"
+                    });
                 } else if ([data[index].tipe] == 'bahaya') {
                     L.polygon(JSON.parse([data[index].polygon]), {
-                        color: 'yellow'
-                    }).addTo(Polygon).bindTooltip('Zona Berbahaya');
+                        color: 'yellow',
+                        weight: 5,
+                        opacity: 0.3
+                    }).addTo(Polygon).bindPopup("@can('admin') <a class = 'btn btn-danger'style = 'color:#fff;'href = " + '/draw/delete/' + data[index].id + " > Delete Polygon </a> @endcan").bindTooltip('Zona Berbahaya', {
+                        direction: "center"
+                    });
                 } else {
                     L.polygon(JSON.parse([data[index].polygon]), {
-                        color: 'green'
-                    }).addTo(Polygon).bindTooltip('Zona Aman');
+                        color: 'green',
+                        weight: 5,
+                        opacity: 0.3
+                    }).addTo(Polygon).bindPopup("@can('admin') <a class = 'btn btn-danger'style = 'color:#fff;'href = " + '/draw/delete/' + data[index].id + " > Delete Polygon </a> @endcan").bindTooltip('Zona Aman', {
+                        direction: "center"
+                    });
                 }
                 // console.log(JSON.parse([data[index].polygon]));
 
@@ -281,7 +293,7 @@
         });
     }
 
-    map.attributionControl.addAttribution('Tsunami Danger &copy; <a href="http://census.gov/">US Census Bureau</a>');
+    map.attributionControl.addAttribution('Tsunami Danger &copy; <a href="https://www.instagram.com/sndyprtn/">Sendy Apriatna</a> &copy; <a href="http://census.gov/">US Census Bureau</a>');
 
     const legend = L.control({
         position: 'bottomright'
@@ -309,16 +321,16 @@
     // END CHROLOPETH
 
     // POPUP LAT LNG
-    var popup = L.popup();
+    // var popup = L.popup();
 
-    function onMapClick(e) {
-        popup
-            .setLatLng(e.latlng)
-            .setContent("You clicked the map at " + e.latlng.toString())
-            .openOn(map);
-    }
+    // function onMapClick(e) {
+    //     popup
+    //         .setLatLng(e.latlng)
+    //         .setContent("You clicked the map at " + e.latlng.toString())
+    //         .openOn(map);
+    // }
 
-    map.on('click', onMapClick);
+    // map.on('click', onMapClick);
 
     // LOKASI SAYA SAAT INI
     L.control.locate().addTo(map);

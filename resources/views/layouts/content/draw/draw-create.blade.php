@@ -61,12 +61,11 @@
     map.addLayer(drawnItems);
 
     var drawControl = new L.Control.Draw({
-
-        position: "topright",
         draw: {
             polyline: false,
-
+            rectangle: false,
             circle: false,
+            marker: false,
             polygon: {
                 shapeOptions: {
                     color: "steelblue"
@@ -84,7 +83,7 @@
 
         var latlng = layer.getLatLngs()[0];
 
-        console.log(layer.getLatLngs());
+        // console.log(layer.getLatLngs());
         $("#polygon").val(JSON.stringify(latlng));
 
         drawnItems.addLayer(layer);

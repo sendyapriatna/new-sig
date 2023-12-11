@@ -53,7 +53,7 @@
             @include('layouts.components.footer')
         </div>
     </div>
-
+    @include('sweetalert::alert')
     <!-- General JS Scripts -->
     <script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('library/popper.js/dist/umd/popper.js') }}"></script>

@@ -68,6 +68,26 @@
                             @enderror
                         </div>
                         <div class="col p-3">
+                            <label for="latitude" class="form-label">Latitude</label>
+                            <input type="text" id="Lattitude" style="border-radius: 0.5em;" class="form-control @error('latitude') is-invalid @enderror" name="latitude" value="{{$data->latitude}}">
+                            @error('latitude')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col p-3">
+                            <label for="longitude" class="form-label">Longitude</label>
+                            <input type="text" id="Longitude" style="border-radius: 0.5em;" class="form-control @error('longitude') is-invalid @enderror" name="longitude" value="{{$data->longitude}}">
+                            @error('longitude')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col p-3">
                             <label for="kapasitas" class="form-label">Kapasitas</label>
                             <input type="text" style="border-radius: 0.5em;" class="form-control @error('kapasitas') is-invalid @enderror" name="kapasitas" value="{{$data->kapasitas}}">
                             @error('kapasitas')
@@ -84,29 +104,8 @@
                             @else
                             <img src="" alt="" class="img-preview img-fluid col p-3">
                             @endif
-
                             <input type="file" class="form-control" id="image" name="image" onchange="previewImage()">
                             @error('image')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col p-3">
-                            <label for="latitude" class="form-label">Latitude</label>
-                            <input type="text" id="Lattitude" style="border-radius: 0.5em;" class="form-control @error('latitude') is-invalid @enderror" name="latitude" value="{{$data->latitude}}">
-                            @error('latitude')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="col p-3">
-                            <label for="longitude" class="form-label">Longitude</label>
-                            <input type="text" id="Longitude" style="border-radius: 0.5em;" class="form-control @error('longitude') is-invalid @enderror" name="longitude" value="{{$data->longitude}}">
-                            @error('longitude')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>

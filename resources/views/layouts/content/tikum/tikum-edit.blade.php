@@ -23,68 +23,90 @@
         <form action="/tikum/update" method="post">
             <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
             <input type="hidden" id="id" name="id" value="{{ $data->id}}" class="form-control select2">
-            <div class="mb-3">
-                <label for="nama" class="form-label">Nama Tempat</label>
-                <input type="text" style="border-radius: 0.5em;" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{$data->nama}}">
-                @error('nama')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="alamat" class="form-label">Alamat</label>
-                <input type="text" style="border-radius: 0.5em;" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{$data->alamat}}">
-                @error('alamat')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="keterangan" class="form-label">Keterangan</label>
-                <input type="text" style="border-radius: 0.5em;" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan" value="{{$data->keterangan}}">
-                @error('keterangan')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="kapasitas" class="form-label">Kapasitas</label>
-                <input type="text" style="border-radius: 0.5em;" class="form-control @error('kapasitas') is-invalid @enderror" name="kapasitas" value="{{$data->kapasitas}}">
-                @error('kapasitas')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-                @enderror
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div id="map2" style="height: 50vh; width: 100%;"></div>
-                </div>
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label for="latitude" class="form-label">Latitude</label>
-                        <input type="text" id="Lattitude" style="border-radius: 0.5em;" class="form-control @error('latitude') is-invalid @enderror" name="latitude" value="{{$data->latitude}}">
-                        @error('latitude')
-                        <div class="invalid-feedback">
-                            {{$message}}
+            <section class="card mt-5 p-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="col p-3">
+                            <label for="nama" class="form-label">Nama Tempat</label>
+                            <input type="text" style="border-radius: 0.5em;" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{$data->nama}}">
+                            @error('nama')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
                         </div>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="longitude" class="form-label">Longitude</label>
-                        <input type="text" id="Longitude" style="border-radius: 0.5em;" class="form-control @error('longitude') is-invalid @enderror" name="longitude" value="{{$data->longitude}}">
-                        @error('longitude')
-                        <div class="invalid-feedback">
-                            {{$message}}
+                        <div class="col p-3">
+                            <label for="alamat" class="form-label">Alamat</label>
+                            <input type="text" style="border-radius: 0.5em;" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{$data->alamat}}">
+                            @error('alamat')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
                         </div>
-                        @enderror
+                        <div class="col p-3">
+                            <label for="keterangan" class="form-label">Keterangan</label>
+                            <input type="text" style="border-radius: 0.5em;" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan" value="{{$data->keterangan}}">
+                            @error('keterangan')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
                     </div>
-                    <button type="submit" style="border-radius: 0.5em;" class="btn btn-success">Submit</button>
+                    <div class="col-md-4">
+                        <div class="col p-3">
+                            <label for="kapasitas" class="form-label">Kapasitas</label>
+                            <input type="text" style="border-radius: 0.5em;" class="form-control @error('kapasitas') is-invalid @enderror" name="kapasitas" value="{{$data->kapasitas}}">
+                            @error('kapasitas')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col p-3">
+                            <label for="latitude" class="form-label">Latitude</label>
+                            <input type="text" id="Lattitude" style="border-radius: 0.5em;" class="form-control @error('latitude') is-invalid @enderror" name="latitude" value="{{$data->latitude}}">
+                            @error('latitude')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col p-3">
+                            <label for="longitude" class="form-label">Longitude</label>
+                            <input type="text" id="Longitude" style="border-radius: 0.5em;" class="form-control @error('longitude') is-invalid @enderror" name="longitude" value="{{$data->longitude}}">
+                            @error('longitude')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col p-3">
+                            <label for="image" class="form-label @error('image') is-invalid @enderror">Post Image</label>
+                            <input type="hidden" name="oldImage" value="{{$data->image}}">
+                            @if($data->image)
+                            <img src="/storage/{{$data->image}}" alt="" class="img-preview img-fluid mb-3 d-block">
+                            @else
+                            <img src="" alt="" class="img-preview img-fluid col p-3">
+                            @endif
+                            <input type="file" class="form-control" id="image" name="image" onchange="previewImage()">
+                            @error('image')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div class="row p-3">
+                    <div class="col p-3 mt-3">
+                        <button type="submit" style="border-radius: 0.5em;" class="btn btn-success p-3 px-5 py-3">Submit</button>
+                    </div>
+                </div>
+            </section>
         </form>
     </section>
 </div>
@@ -131,6 +153,21 @@
         $("#Longitude").val(longtitude);
         $("#Lattitude").val(lattitude);
     })
+
+    // IMAGE PREVIEW
+    function previewImage() {
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
 </script>
 
 <!-- Page Specific JS File -->

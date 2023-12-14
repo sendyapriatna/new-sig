@@ -67,19 +67,32 @@ class ShelterController extends Controller
                 Storage::delete($request->oldImage);
             }
             $validatedData['image'] = $request->file('image')->store('post-image');
+
+            $post = DB::table('shelter_tables')->where('id', $request->id)->update([
+                'nama' => $request->nama,
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
+                'alamat' => $request->alamat,
+                'keterangan' => $request->keterangan,
+                'kontak' => $request->kontak,
+                'kapasitas' => $request->kapasitas,
+                'image' => $request->file('image')->store('post-image')
+
+            ]);
+        } else {
+            $post = DB::table('shelter_tables')->where('id', $request->id)->update([
+                'nama' => $request->nama,
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
+                'alamat' => $request->alamat,
+                'keterangan' => $request->keterangan,
+                'kontak' => $request->kontak,
+                'kapasitas' => $request->kapasitas,
+                'image' => $request->oldImage
+            ]);
         }
 
-        $post = DB::table('shelter_tables')->where('id', $request->id)->update([
-            'nama' => $request->nama,
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude,
-            'alamat' => $request->alamat,
-            'keterangan' => $request->keterangan,
-            'kontak' => $request->kontak,
-            'kapasitas' => $request->kapasitas,
-            'image' => $request->file('image')->store('post-image')
 
-        ]);
 
         if ($post) {
             return redirect('/dashboard')->with('toast_success', 'Task Updated Successfully!');

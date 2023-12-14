@@ -22,10 +22,9 @@
         @endif
         <div class="row">
             <div class="col-md">@include('layouts.map.map-shelter')</div>
-            <div class="col-md"><img style="height: 50vh;" src="/storage/{{$data->image}}"></div>
+            <div class="col-md text-center"><img class="img-fluid" src="/storage/{{$data->image}}"></div>
         </div>
         <section class="card mt-5 p-3">
-
             <div class="row">
                 <div class="col-md-4">
                     <div class="mb-3">
@@ -66,9 +65,6 @@
         <form action="/dashboard/view/update" method="post">
             <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
             <input type="hidden" id="id" name="id" value="{{ $data->id}}" class="form-control select2">
-
-
-
         </form>
     </section>
 </div>

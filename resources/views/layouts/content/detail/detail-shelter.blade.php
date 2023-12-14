@@ -1,54 +1,44 @@
-@include('layouts.app')
+@include('layouts.app3')
+
 <div class="container-fluid">
-    <div class=" d-flex justify-content-center">
-        <div class="row">
-            <div class="col">
-                <table class="table table-borderless">
-                    <tr>
-                        <th>
-                            <h6>Navigation</h6>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            @include('layouts.map.map-shelter')
-                        </td>
-                    </tr>
-                </table>
+    <div class="mt-4 px-5">
+        <a style="text-decoration: none;" href="/">
+            <h2 class="section-title text-white px-5">PangandaranWEBGIS</h2>
+        </a>
+        <p class="section-lead text-white px-5">Selamat Datang Di Website GIS Tsunami Pangandaran.</p>
+        <!-- <p class="text-white">Copyright &copy; 2023 Design By <a href="https://www.instagram.com/sndyprtn/">Sendy Apriatna</a></p> -->
+
+    </div>
+    <section class="section px-5">
+        <div class="row mt-1  px-5">
+            <div class="col-md-6">
+                @include('layouts.map.route-map-detail')
             </div>
-            <div class="col">
-                <table class="table table-borderless">
-                    <tr>
-                        <th>
-                            <h6>Information</h6>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th colspan="2"><img style="width: 50%;border-radius: 0.5em;" src="/storage/{{$data->image}}"></th>
-                    </tr>
-                    <tr>
-                        <th>Nama</th>
-                        <td>{{$data->nama}}</td>
-                    </tr>
-                    <tr>
-                        <th>Address</th>
-                        <td>{{$data->alamat}}</td>
-                    </tr>
-                    <tr>
-                        <th>Description</th>
-                        <td>{{$data->keterangan}}</td>
-                    </tr>
-                    <tr>
-                        <th>Contact</th>
-                        <td>{{$data->kontak}}</td>
-                    </tr>
-                    <tr>
-                        <th>ticket Price</th>
-                        <td>{{$data->kapasitas}}</td>
-                    </tr>
-                </table>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <th colspan="2"><img class="img-fluid" src="/storage/{{$data->image}}"></th>
+                </div>
+                <div class="mb-3">
+                    <label for="nama" class="form-label">Nama Tempat</label>
+                    <input type="text" style="border-radius: 0.5em;" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{$data->nama}}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="alamat" class="form-label">Alamat</label>
+                    <input type="text" style="border-radius: 0.5em;" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{$data->alamat}}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="keterangan" class="form-label">Keterangan</label>
+                    <input type="text" style="border-radius: 0.5em;" class="form-control @error('Keterangan') is-invalid @enderror" name="keterangan" value="{{$data->keterangan}}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="kontak" class="form-label">Contact</label>
+                    <input type="text" style="border-radius: 0.5em;" class="form-control @error('kontak') is-invalid @enderror" name="kontak" value="{{$data->kontak}}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="kapasitas" class="form-label">Kapasitas</label>
+                    <input type="text" style="border-radius: 0.5em;" class="form-control @error('kapasitas') is-invalid @enderror" name="kapasitas" value="{{$data->kapasitas}}" readonly>
+                </div>
             </div>
         </div>
-    </div>
-
+    </section>
 </div>

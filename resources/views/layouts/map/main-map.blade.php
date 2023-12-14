@@ -62,7 +62,7 @@
     //             // alert(data[index].nama)
     //             L.marker([data[index].latitude, data[index].longitude], {
     //                 icon: shelterIcon
-    //             }).addTo(shelter).bindPopup("<div><img style='width: 100%;border-radius: 0.5em;' src=" + '/storage/' + data[index].image + "><br><br><b>" + data[index].nama + "</b><br><br>" + data[index].keterangan + "<br><br>Kapasitas " + data[index].kapasitas + " Orang<br><br><a class='btn btn-primary' style='color:#fff;' href=" + '/landing-page/detailShelter/' + data[index].id + ">Detail</a></div>");
+    //             }).addTo(shelter).bindPopup("<div><img style='width: 100%;border-radius: 0.5em;' src=" + '/storage/' + data[index].image + "><br><br><b>" + data[index].nama + "</b><br><br>" + data[index].keterangan + "<br><br>Kapasitas " + data[index].kapasitas + " Orang<br><br><a class='btn btn-primary' style='color:#fff;' href=" + '/detailShelter/' + data[index].id + ">Detail</a></div>");
     //         });
     //     });
     // });
@@ -73,7 +73,7 @@
                 // alert(data[index].nama)
                 L.marker([data[index].latitude, data[index].longitude], {
                     icon: shelterIcon
-                }).addTo(shelter).bindPopup("<div><table> <th class = 'text-center' colspan='3'> Information </th><tr><td class='text-center' colspan='3'><img style='width: 100%;border-radius: 0.5em;padding: 10px 0 10px 0;' src=" + '/storage/' + data[index].image + "></td></tr><tr><td style = 'padding: 10px 0 10px 0;'> Nama </td><td>:</td><td>" + data[index].nama + "</td></tr><tr><td style = 'padding: 10px 0 10px 0;' > Keterangan </td><td>:</td><td>" + data[index].keterangan + "</td></tr><tr><td style = 'padding: 10px 0 10px 0;'> Kapasitas </td><td>:</td><td> " + data[index].kapasitas + " Orang</td></tr><tr><td class = 'text-center'colspan = '3'><a class = 'btn btn-primary'style = 'color:#fff;'href = " + '/landing-page/detailShelter/' + data[index].id + " > Detail </a></td></tr></table></div>");
+                }).addTo(shelter).bindPopup("<div><table> <th class = 'text-center' colspan='3'> Information </th><tr><td class='text-center' colspan='3'><img style='width: 100%;border-radius: 0.5em;padding: 10px 0 10px 0;' src=" + '/storage/' + data[index].image + "></td></tr><tr><td style = 'padding: 10px 0 10px 0;'> Nama </td><td>:</td><td>" + data[index].nama + "</td></tr><tr><td style = 'padding: 10px 0 10px 0;' > Keterangan </td><td>:</td><td>" + data[index].keterangan + "</td></tr><tr><td style = 'padding: 10px 0 10px 0;'> Kapasitas </td><td>:</td><td> " + data[index].kapasitas + " Orang</td></tr><tr><td class = 'text-center'colspan = '3'><a class = 'btn btn-primary'style = 'color:#fff;'href = " + '/detailShelter/' + data[index].id + " > Detail </a></td></tr></table></div>");
             });
         });
     });
@@ -118,7 +118,7 @@
     //             // alert(data[index].nama)
     //             L.marker([data[index].latitude, data[index].longitude], {
     //                 icon: tikumIcon
-    //             }).addTo(tikum).bindPopup("<div><table> <th class = 'text-center' colspan='3'> Information </th><tr><td class='text-center' colspan='3'><img style='width: 100%;border-radius: 0.5em;padding: 10px 0 10px 0;' src=" + '/storage/' + data[index].image + "></td></tr><tr><td style = 'padding: 10px 0 10px 0;'> Nama </td><td>:</td><td>" + data[index].nama + "</td></tr><tr><td style = 'padding: 10px 0 10px 0;' > Keterangan </td><td>:</td><td>" + data[index].keterangan + "</td></tr><tr><td style = 'padding: 10px 0 10px 0;'> Kapasitas </td><td>:</td><td> " + data[index].kapasitas + " Orang</td></tr><tr><td class = 'text-center'colspan = '3'><a class = 'btn btn-primary'style = 'color:#fff;'href = " + '/landing-page/detailShelter/' + data[index].id + " > Detail </a></td></tr></table></div>");
+    //             }).addTo(tikum).bindPopup("<div><table> <th class = 'text-center' colspan='3'> Information </th><tr><td class='text-center' colspan='3'><img style='width: 100%;border-radius: 0.5em;padding: 10px 0 10px 0;' src=" + '/storage/' + data[index].image + "></td></tr><tr><td style = 'padding: 10px 0 10px 0;'> Nama </td><td>:</td><td>" + data[index].nama + "</td></tr><tr><td style = 'padding: 10px 0 10px 0;' > Keterangan </td><td>:</td><td>" + data[index].keterangan + "</td></tr><tr><td style = 'padding: 10px 0 10px 0;'> Kapasitas </td><td>:</td><td> " + data[index].kapasitas + " Orang</td></tr><tr><td class = 'text-center'colspan = '3'><a class = 'btn btn-primary'style = 'color:#fff;'href = " + '/detailShelter/' + data[index].id + " > Detail </a></td></tr></table></div>");
     //         });
     //     });
     // });

@@ -210,7 +210,7 @@
                 <a href="#" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
-                <a href="/landing-page" class="dropdown-item has-icon">
+                <a href="/" class="dropdown-item has-icon">
                     <i class="fas fa-bolt"></i> Home
                 </a>
                 <a href="#" class="dropdown-item has-icon">

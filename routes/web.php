@@ -28,7 +28,7 @@ Route::get('/titikShelter/json', [App\Http\Controllers\LandingPageController::cl
 Route::get('/titikTikum/json', [App\Http\Controllers\LandingPageController::class, 'titikTikum']); //cek vardump
 Route::get('/titikPolygon/json', [App\Http\Controllers\LandingPageController::class, 'titikPolygon']); //cek vardump
 Route::get('/lokasi/json/{id}', [App\Http\Controllers\LandingPageController::class, 'lokasi']);
-Route::get('/main-ancaman-kerusakan', [App\Http\Controllers\MainMapController::class, 'index']);
+// Route::get('/main-ancaman-kerusakan', [App\Http\Controllers\MainMapController::class, 'index']);
 Route::get('/map', [App\Http\Controllers\MapGisController::class, 'index']);
 // Route::get('/landing-page', [App\Http\Controllers\LandingPageController::class, 'index']);
 // Route::get('/', [App\Http\Controllers\LandingPageController::class, 'index']);
@@ -38,8 +38,8 @@ Route::get('/map', [App\Http\Controllers\MapGisController::class, 'index']);
 // Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
 
 // Detail
-Route::get('/landing-page/detailShelter/{id}', [App\Http\Controllers\ViewDetailShelterController::class, 'detailShelter']);
-Route::get('/landing-page/detailTikum/{id}', [App\Http\Controllers\ViewDetailShelterController::class, 'detailTikum']);
+Route::get('/detailShelter/{id}', [App\Http\Controllers\ViewDetailShelterController::class, 'detailShelter']);
+Route::get('/detailTikum/{id}', [App\Http\Controllers\ViewDetailShelterController::class, 'detailTikum']);
 
 // Dashboard
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);

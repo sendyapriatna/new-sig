@@ -33,8 +33,27 @@
     var geojson = L.geoJson(GeoJsonData, geoJsonOptions).addTo(map);
 </script>
 
-/* global statesData */ const geojson = L.geoJson(statesData, { style,
-onEachFeature }).addTo(map); var latlng = ['null', 'null']; var index; for
-(index = 0; index < 5; index++) { if (index == 0) { latlng =
-layer.getLatLngs()[0][index]; console.log(latlng); } else if (index % 2 == 0) {
-latlng = layer.getLatLngs()[0][index]; console.log(latlng); } };
+<script>
+    var routingControl = L.Routing.control({
+        waypoints: [
+            L.latLng(-7.780051227041845, 110.4510279345445),
+            L.latLng("{{$data->latitude}}", "{{$data->longitude}}"),
+        ],
+        show: false,
+        routeWhileDragging: false,
+        draggableWaypoints: false,
+        reverseWaypoints: false,
+        fitSelectedRoutes: true,
+        addWaypoints: false,
+    }).addTo(map);
+    L.Routing.errorControl(routingControl).addTo(map);
+    setInterval(function () {
+        var newWaypoint = routingControl.getWaypoints()[0].latLng;
+        var newLat = newWaypoint.lat - 0.01;
+        var newLng = newWaypoint.lng - 0.01;
+        routingControl.setWaypoints([
+            L.latLng(newLat, newLng),
+            routingControl.options.waypoints[1],
+        ]);
+    }, 5000);
+</script>

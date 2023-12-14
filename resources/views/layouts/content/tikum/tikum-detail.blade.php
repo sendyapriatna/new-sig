@@ -1,6 +1,6 @@
 @extends('layouts.app2')
 
-@section('title2', 'Tikum Detail')
+@section('title2', 'Detail Tikum')
 
 @push('style')
 <!-- CSS Libraries -->
@@ -12,7 +12,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Detail Gathering Point</h1>
+            <h1>Detail Tikum Point</h1>
         </div>
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -20,33 +20,48 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
+        <div class="row">
+            <div class="col-md">@include('layouts.map.map-tikum')</div>
+            <div class="col-md text-center"><img class="img-fluid" src="/storage/{{$data->image}}"></div>
+        </div>
+        <section class="card mt-5 p-3">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Nama Tempat</label>
+                        <input type="text" style="border-radius: 0.5em;" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{$data->nama}}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="alamat" class="form-label">Alamat</label>
+                        <input type="text" style="border-radius: 0.5em;" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{$data->alamat}}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="keterangan" class="form-label">Keterangan</label>
+                        <input type="text" style="border-radius: 0.5em;" class="form-control @error('Keterangan') is-invalid @enderror" name="keterangan" value="{{$data->keterangan}}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="kapasitas" class="form-label">Kapasitas</label>
+                        <input type="text" style="border-radius: 0.5em;" class="form-control @error('kapasitas') is-invalid @enderror" name="kapasitas" value="{{$data->kapasitas}}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="latitude" class="form-label">Latitude</label>
+                        <input type="text" style="border-radius: 0.5em;" class="form-control @error('latitude') is-invalid @enderror" name="latitude" value="{{$data->latitude}}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="longitude" class="form-label">Longitude</label>
+                        <input type="text" style="border-radius: 0.5em;" class="form-control @error('longitude') is-invalid @enderror" name="longitude" value="{{$data->longitude}}" readonly>
+                    </div>
+                </div>
+            </div>
+        </section>
         <form action="/dashboard/view/update" method="post">
             <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
             <input type="hidden" id="id" name="id" value="{{ $data->id}}" class="form-control select2">
-            <div class="mb-3">
-                <label for="nama" class="form-label">Nama Tempat</label>
-                <input type="text" style="border-radius: 0.5em;" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{$data->nama}}" readonly>
-            </div>
-            <div class="mb-3">
-                <label for="alamat" class="form-label">Alamat</label>
-                <input type="text" style="border-radius: 0.5em;" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{$data->alamat}}" readonly>
-            </div>
-            <div class="mb-3">
-                <label for="keterangan" class="form-label">Keterangan</label>
-                <input type="text" style="border-radius: 0.5em;" class="form-control @error('Keterangan') is-invalid @enderror" name="keterangan" value="{{$data->keterangan}}" readonly>
-            </div>
-            <div class="mb-3">
-                <label for="kapasitas" class="form-label">Kapasitas</label>
-                <input type="text" style="border-radius: 0.5em;" class="form-control @error('kapasitas') is-invalid @enderror" name="kapasitas" value="{{$data->kapasitas}}" readonly>
-            </div>
-            <div class="mb-3">
-                <label for="latitude" class="form-label">Latitude</label>
-                <input type="text" style="border-radius: 0.5em;" class="form-control @error('latitude') is-invalid @enderror" name="latitude" value="{{$data->latitude}}" readonly>
-            </div>
-            <div class="mb-3">
-                <label for="longitude" class="form-label">Longitude</label>
-                <input type="text" style="border-radius: 0.5em;" class="form-control @error('longitude') is-invalid @enderror" name="longitude" value="{{$data->longitude}}" readonly>
-            </div>
         </form>
     </section>
 </div>

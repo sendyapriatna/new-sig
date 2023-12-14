@@ -50,33 +50,33 @@ class TikumController extends Controller
     public function updated(Request $request)
     {
         $this->authorize('admin');
-        $this->validate($request, [
-            'nama' => 'required|string|min:5',
-            'latitude' => 'required',
-            'longitude' => 'required',
-            'alamat' => 'required',
-            'keterangan' => 'required',
-            'kapasitas' => 'required',
-            'image' => 'image|file|max:2048',
-        ]);
-
         if ($request->file('image')) {
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
             $validatedData['image'] = $request->file('image')->store('post-image');
+
+            $post = DB::table('shelter_tables')->where('id', $request->id)->update([
+                'nama' => $request->nama,
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
+                'alamat' => $request->alamat,
+                'keterangan' => $request->keterangan,
+                'kapasitas' => $request->kapasitas,
+                'image' => $request->file('image')->store('post-image')
+
+            ]);
+        } else {
+            $post = DB::table('shelter_tables')->where('id', $request->id)->update([
+                'nama' => $request->nama,
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
+                'alamat' => $request->alamat,
+                'keterangan' => $request->keterangan,
+                'kapasitas' => $request->kapasitas,
+                'image' => $request->oldImage
+            ]);
         }
-
-        $post = DB::table('tikum_tables')->where('id', $request->id)->update([
-            'nama' => $request->nama,
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude,
-            'alamat' => $request->alamat,
-            'keterangan' => $request->keterangan,
-            'kapasitas' => $request->kapasitas,
-            'image' => $request->file('image')->store('post-image')
-
-        ]);
         if ($post) {
             return redirect('/dashboard')->with('toast_success', 'Task Updated Successfully!');
         } else {

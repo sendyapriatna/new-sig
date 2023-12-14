@@ -26,7 +26,7 @@ class PolygonController extends Controller
         $post = Polygon::Create($validatedData);
 
         if ($post) {
-            return redirect('/dashboard')->with('toast_success', 'Task Deleted Successfully!');
+            return redirect('/dashboard')->with('toast_success', 'Task Created Successfully!');
         } else {
             return redirect()
                 ->back()

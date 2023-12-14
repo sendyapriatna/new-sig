@@ -1,6 +1,6 @@
 @extends('layouts.app2')
 
-@section('title2', 'Tikum Edit')
+@section('title2', 'Tikun Edit')
 
 @push('style')
 <!-- CSS Libraries -->
@@ -20,9 +20,12 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
-        <form action="/tikum/update" method="post">
+        <form action="/tikum/update" method="post" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
             <input type="hidden" id="id" name="id" value="{{ $data->id}}" class="form-control select2">
+            <h2 class="section-title">Pilih Titik</h2>
+            <!-- <p class="section-lead">Pilih titik pada map dibawah</p> -->
+            <div id="map2" style="height: 50vh; width: 100%;"></div>
             <section class="card mt-5 p-3">
                 <div class="row">
                     <div class="col-md-4">
@@ -56,15 +59,6 @@
                     </div>
                     <div class="col-md-4">
                         <div class="col p-3">
-                            <label for="kapasitas" class="form-label">Kapasitas</label>
-                            <input type="text" style="border-radius: 0.5em;" class="form-control @error('kapasitas') is-invalid @enderror" name="kapasitas" value="{{$data->kapasitas}}">
-                            @error('kapasitas')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="col p-3">
                             <label for="latitude" class="form-label">Latitude</label>
                             <input type="text" id="Lattitude" style="border-radius: 0.5em;" class="form-control @error('latitude') is-invalid @enderror" name="latitude" value="{{$data->latitude}}">
                             @error('latitude')
@@ -77,6 +71,15 @@
                             <label for="longitude" class="form-label">Longitude</label>
                             <input type="text" id="Longitude" style="border-radius: 0.5em;" class="form-control @error('longitude') is-invalid @enderror" name="longitude" value="{{$data->longitude}}">
                             @error('longitude')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col p-3">
+                            <label for="kapasitas" class="form-label">Kapasitas</label>
+                            <input type="text" style="border-radius: 0.5em;" class="form-control @error('kapasitas') is-invalid @enderror" name="kapasitas" value="{{$data->kapasitas}}">
+                            @error('kapasitas')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
@@ -107,6 +110,7 @@
                     </div>
                 </div>
             </section>
+
         </form>
     </section>
 </div>
@@ -121,7 +125,7 @@
 <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
 <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 <script>
-    var map = L.map('map2').setView([-7.677718722836917, 108.64768251433698], 13);
+    var map = L.map('map2').setView(["{{$data->latitude}}", "{{$data->longitude}}"], 13);
 
     // google street
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

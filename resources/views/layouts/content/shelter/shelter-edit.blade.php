@@ -134,7 +134,7 @@
 <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
 <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 <script>
-    var map = L.map('map2').setView([-7.677718722836917, 108.64768251433698], 13);
+    var map = L.map('map2').setView(["{{$data->latitude}}", "{{$data->longitude}}"], 13);
 
     // google street
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

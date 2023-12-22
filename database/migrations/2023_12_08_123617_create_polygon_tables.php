@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('polygon_tables', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->text('polygon');
+            $table->longText('polygon');
             $table->string('tipe');
+            $table->enum('is_active', ['Active', 'NonActive'])->default('Active');
         });
     }
 

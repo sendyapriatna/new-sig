@@ -56,7 +56,7 @@ class TikumController extends Controller
             }
             $validatedData['image'] = $request->file('image')->store('post-image');
 
-            $post = DB::table('shelter_tables')->where('id', $request->id)->update([
+            $post = DB::table('tikum_tables')->where('id', $request->id)->update([
                 'nama' => $request->nama,
                 'latitude' => $request->latitude,
                 'longitude' => $request->longitude,
@@ -67,7 +67,7 @@ class TikumController extends Controller
 
             ]);
         } else {
-            $post = DB::table('shelter_tables')->where('id', $request->id)->update([
+            $post = DB::table('tikum_tables')->where('id', $request->id)->update([
                 'nama' => $request->nama,
                 'latitude' => $request->latitude,
                 'longitude' => $request->longitude,

@@ -11,7 +11,8 @@ class Polygon extends Model
     protected $fillable = [
         'id',
         'polygon',
-        'tipe'
+        'tipe',
+        'is_active'
     ];
     use HasFactory;
 }

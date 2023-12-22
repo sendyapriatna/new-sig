@@ -14,6 +14,12 @@
         <div class="section-header">
             <h1>Add New Shelter Point</h1>
         </div>
+        <!-- <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add Shelter</li>
+            </ol>
+        </nav> -->
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{session('success')}}
@@ -22,7 +28,7 @@
         @endif
         <form action="/shelter/add" method="post" enctype="multipart/form-data">
             @csrf
-            <h2 class="section-title">Pilih Titik</h2>
+            <h2 class="section-title" sty>Pilih Titik</h2>
             <!-- <p class="section-lead">Pilih titik pada map dibawah</p> -->
             <div id="map2" style="height: 50vh; width: 100%;"></div>
             <section class="card mt-5 p-3">
@@ -128,7 +134,7 @@
 <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
 <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 <script>
-    var map = L.map('map2').setView([-7.677718722836917, 108.64768251433698], 13);
+    var map = L.map('map2').setView([-7.707769, 108.658733], 13);
 
     // google street
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

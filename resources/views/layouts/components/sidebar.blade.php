@@ -18,6 +18,7 @@
             </li>
         </ul>
         <ul class="sidebar-menu">
+            <li class="menu-header">Data</li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fa-solid fa-database"></i><span>Data</span></a>
                 <ul class="dropdown-menu">
@@ -35,10 +36,19 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fa-solid fa-map"></i><span>Peta GIS</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('/viewDraw') }}">View Peta Ancaman</a>
+                    </li>
+                    <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('/draw/create') }}">Buat Peta Ancaman</a>
                     </li>
                 </ul>
             </li>
         </ul>
+        <!-- <ul class="sidebar-menu">
+            <li class="menu-header">PROFILE</li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+            </li>
+        </ul> -->
     </aside>
 </div>

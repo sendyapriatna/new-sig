@@ -33,11 +33,17 @@ class LandingPageController extends Controller
 
     public function titikTikum()
     {
-        $result = DB::table('tikum_tables')->select('id', 'nama', 'latitude', 'longitude', 'alamat', 'keterangan', 'kapasitas')->get();
+        $result = DB::table('tikum_tables')->select('id', 'nama', 'latitude', 'longitude', 'alamat', 'keterangan', 'kapasitas', 'image')->get();
         return json_encode($result);
     }
 
     public function titikPolygon()
+    {
+        $result = DB::table('polygon_tables')->select('id', 'polygon', 'tipe', 'is_active')->get();
+
+        return json_encode($result);
+    }
+    public function viewPolygon()
     {
         $result = DB::table('polygon_tables')->select('id', 'polygon', 'tipe')->get();
 

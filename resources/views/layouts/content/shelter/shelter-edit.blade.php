@@ -14,6 +14,12 @@
         <div class="section-header">
             <h1>Edit Shelter Point</h1>
         </div>
+        <!-- <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Shelter</li>
+            </ol>
+        </nav> -->
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{session('success')}}

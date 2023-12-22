@@ -14,6 +14,12 @@
         <div class="section-header">
             <h1>Detail Shelter Point</h1>
         </div>
+        <!-- <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Detail Shelter</li>
+            </ol>
+        </nav> -->
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{session('success')}}
@@ -21,12 +27,12 @@
         </div>
         @endif
         <div class="row">
-            <div class="col-md">@include('layouts.map.map-shelter')</div>
-            <div class="col-md text-center"><img class="img-fluid" src="/storage/{{$data->image}}"></div>
-        </div>
-        <section class="card mt-5 p-3">
-            <div class="row">
-                <div class="col-md-4">
+            <div class="col-md-6">
+                <div class="">@include('layouts.map.map-shelter')</div>
+                <div class="my-3 text-center"><img class="img-fluid" style="height: 50vh; width: 100%;" src="/storage/{{$data->image}}"></div>
+            </div>
+            <div class="col">
+                <section class="card px-5 py-5">
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama Tempat</label>
                         <input type="text" style="border-radius: 0.5em;" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{$data->nama}}" readonly>
@@ -39,18 +45,15 @@
                         <label for="keterangan" class="form-label">Keterangan</label>
                         <input type="text" style="border-radius: 0.5em;" class="form-control @error('Keterangan') is-invalid @enderror" name="keterangan" value="{{$data->keterangan}}" readonly>
                     </div>
-                </div>
-                <div class="col-md-4">
                     <div class="mb-3">
                         <label for="kontak" class="form-label">Contact</label>
                         <input type="text" style="border-radius: 0.5em;" class="form-control @error('kontak') is-invalid @enderror" name="kontak" value="{{$data->kontak}}" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="kapasitas" class="form-label">Kapasitas</label>
-                        <input type="text" style="border-radius: 0.5em;" class="form-control @error('kapasitas') is-invalid @enderror" name="kapasitas" value="{{$data->kapasitas}}" readonly>
+                        <input type="text" style="border-radius: 0.5em;" class="form-control @error('kapasitas') is-invalid @enderror" name="kapasitas" value="{{$data->kapasitas}} Orang" readonly>
                     </div>
-                </div>
-                <div class="col-md-4">
+
                     <div class="mb-3">
                         <label for="latitude" class="form-label">Latitude</label>
                         <input type="text" style="border-radius: 0.5em;" class="form-control @error('latitude') is-invalid @enderror" name="latitude" value="{{$data->latitude}}" readonly>
@@ -59,9 +62,9 @@
                         <label for="longitude" class="form-label">Longitude</label>
                         <input type="text" style="border-radius: 0.5em;" class="form-control @error('longitude') is-invalid @enderror" name="longitude" value="{{$data->longitude}}" readonly>
                     </div>
-                </div>
+                </section>
             </div>
-        </section>
+        </div>
         <form action="/dashboard/view/update" method="post">
             <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
             <input type="hidden" id="id" name="id" value="{{ $data->id}}" class="form-control select2">

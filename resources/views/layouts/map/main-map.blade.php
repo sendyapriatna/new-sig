@@ -27,6 +27,35 @@
 <script src="{{ asset('js/tsunami.js') }}"></script>
 
 <script type="text/javascript">
+    // MAP STYLE
+    const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
+
+    const osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
+    });
+
+    const CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 20
+    });
+
+    const CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 20
+    });
+
+    const Google = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        maxZoom: 15,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    });
+    // END MAP STYLE
+
     // ICON SHELTER
     var shelterIcon = L.icon({
         iconUrl: "{{ asset('img/shelter.png') }}",
@@ -73,65 +102,35 @@
                 // alert(data[index].nama)
                 L.marker([data[index].latitude, data[index].longitude], {
                     icon: shelterIcon
-                }).addTo(shelter).bindPopup("<div><table> <th class = 'text-center' colspan='3'> Information </th><tr><td class='text-center' colspan='3'><img style='width: 100%;border-radius: 0.5em;padding: 10px 0 10px 0;' src=" + '/storage/' + data[index].image + "></td></tr><tr><td style = 'padding: 10px 0 10px 0;'> Nama </td><td>:</td><td>" + data[index].nama + "</td></tr><tr><td style = 'padding: 10px 0 10px 0;' > Keterangan </td><td>:</td><td>" + data[index].keterangan + "</td></tr><tr><td style = 'padding: 10px 0 10px 0;'> Kapasitas </td><td>:</td><td> " + data[index].kapasitas + " Orang</td></tr><tr><td class = 'text-center'colspan = '3'><a class = 'btn btn-primary'style = 'color:#fff;'href = " + '/detailShelter/' + data[index].id + " > Detail </a></td></tr></table></div>");
+                }).addTo(shelter).bindPopup("<div><table> <th class = 'text-center' colspan='3'> Information </th><tr><td class='text-center' colspan='3'><img class='img-fluid' style='border-radius: 0.5em;padding: 10px 0 10px 0;' src=" + '/storage/' + data[index].image + "></td></tr><tr><td style = 'padding: 10px 0 10px 0;'> Nama </td><td>:</td><td>" + data[index].nama + "</td></tr><tr><td style = 'padding: 10px 0 10px 0;' > Keterangan </td><td>:</td><td>" + data[index].keterangan + "</td></tr><tr><td style = 'padding: 10px 0 10px 0;'> Kapasitas </td><td>:</td><td> " + data[index].kapasitas + " Orang</td></tr><tr><td class = 'text-center'colspan = '3'><a class = 'btn btn-primary'style = 'color:#fff;'href = " + '/detailShelter/' + data[index].id + " > Detail </a></td></tr></table></div>");
             });
         });
     });
-
-
-    // MAP STYLE
-    const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    });
-
-    const osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
-    });
-
-    const CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 20
-    });
-
-    const CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 20
-    });
-
-    const Google = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-        maxZoom: 15,
-        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-    });
-    // END MAP STYLE
 
     //MARKET TIKUM
     const tikum = L.layerGroup();
     // const klinik = L.marker([-7.678952915858859, 108.66750698247081]).bindPopup('This is KLINIK, CO.').addTo(tikum);
     // const salon = L.marker([-7.681720111412515, 108.65030682785383]).bindPopup('This is SALON, CO.').addTo(tikum);
-    // $(document).ready(function() {
-    //     $.getJSON('titikTikum/json', function(data) {
-    //         $.each(data, function(index) {
-    //             // alert(data[index].nama)
-    //             L.marker([data[index].latitude, data[index].longitude], {
-    //                 icon: tikumIcon
-    //             }).addTo(tikum).bindPopup("<div><table> <th class = 'text-center' colspan='3'> Information </th><tr><td class='text-center' colspan='3'><img style='width: 100%;border-radius: 0.5em;padding: 10px 0 10px 0;' src=" + '/storage/' + data[index].image + "></td></tr><tr><td style = 'padding: 10px 0 10px 0;'> Nama </td><td>:</td><td>" + data[index].nama + "</td></tr><tr><td style = 'padding: 10px 0 10px 0;' > Keterangan </td><td>:</td><td>" + data[index].keterangan + "</td></tr><tr><td style = 'padding: 10px 0 10px 0;'> Kapasitas </td><td>:</td><td> " + data[index].kapasitas + " Orang</td></tr><tr><td class = 'text-center'colspan = '3'><a class = 'btn btn-primary'style = 'color:#fff;'href = " + '/detailShelter/' + data[index].id + " > Detail </a></td></tr></table></div>");
-    //         });
-    //     });
-    // });
     $(document).ready(function() {
         $.getJSON('titikTikum/json', function(data) {
             $.each(data, function(index) {
                 // alert(data[index].nama)
                 L.marker([data[index].latitude, data[index].longitude], {
                     icon: tikumIcon
-                }).addTo(tikum).bindPopup("<p data-bs-toggle='offcanvas' data-bs-target='#offcanvasExample'>cek</p>");
+                }).addTo(tikum).bindPopup("<div><table> <th class = 'text-center' colspan='3'> Information </th><tr><td class='text-center' colspan='3'><img style='width: 100%;border-radius: 0.5em;padding: 10px 0 10px 0;' src=" + '/storage/' + data[index].image + "></td></tr><tr><td style = 'padding: 10px 0 10px 0;'> Nama </td><td>:</td><td>" + data[index].nama + "</td></tr><tr><td style = 'padding: 10px 0 10px 0;' > Keterangan </td><td>:</td><td>" + data[index].keterangan + "</td></tr><tr><td style = 'padding: 10px 0 10px 0;'> Kapasitas </td><td>:</td><td> " + data[index].kapasitas + " Orang</td></tr><tr><td class = 'text-center'colspan = '3'><a class = 'btn btn-primary'style = 'color:#fff;'href = " + '/detailTikum/' + data[index].id + " > Detail </a></td></tr></table></div>");
             });
         });
     });
+    // $(document).ready(function() {
+    //     $.getJSON('titikTikum/json', function(data) {
+    //         $.each(data, function(index) {
+    //             // alert(data[index].nama)
+    //             L.marker([data[index].latitude, data[index].longitude], {
+    //                 icon: tikumIcon
+    //             }).addTo(tikum).bindPopup("<p data-bs-toggle='offcanvas' data-bs-target='#offcanvasExample'>cek</p>");
+    //         });
+    //     });
+    // });
 
 
     // DRAW POLYGON 
@@ -139,33 +138,34 @@
     $(document).ready(function() {
         $.getJSON('titikPolygon/json', function(data) {
             $.each(data, function(index) {
-                if ([data[index].tipe] == 'sbahaya') {
-                    L.polygon(JSON.parse([data[index].polygon]), {
-                        color: 'red',
-                        weight: 5,
-                        opacity: 0.3
-                    }).addTo(Polygon).bindPopup("@can('admin') <a class = 'btn btn-danger'style = 'color:#fff;'href = " + '/draw/delete/' + data[index].id + " > Delete Polygon </a> @endcan").bindTooltip('Zona Sangat Berbahaya', {
-                        direction: "center"
-                    });
-                } else if ([data[index].tipe] == 'bahaya') {
-                    L.polygon(JSON.parse([data[index].polygon]), {
-                        color: 'yellow',
-                        weight: 5,
-                        opacity: 0.3
-                    }).addTo(Polygon).bindPopup("@can('admin') <a class = 'btn btn-danger'style = 'color:#fff;'href = " + '/draw/delete/' + data[index].id + " > Delete Polygon </a> @endcan").bindTooltip('Zona Berbahaya', {
-                        direction: "center"
-                    });
-                } else {
-                    L.polygon(JSON.parse([data[index].polygon]), {
-                        color: 'green',
-                        weight: 5,
-                        opacity: 0.3
-                    }).addTo(Polygon).bindPopup("@can('admin') <a class = 'btn btn-danger'style = 'color:#fff;'href = " + '/draw/delete/' + data[index].id + " > Delete Polygon </a> @endcan").bindTooltip('Zona Aman', {
-                        direction: "center"
-                    });
+                if (data[index].is_active == 'Active') {
+                    if ([data[index].tipe] == 'Sangat Berbahaya') {
+                        L.polygon(JSON.parse([data[index].polygon]), {
+                            color: '#ff4242',
+                            weight: 3,
+                            opacity: 0.3
+                        }).addTo(Polygon).bindTooltip('Zona Sangat Berbahaya', {
+                            direction: "center"
+                        });
+                    } else if ([data[index].tipe] == 'Berbahaya') {
+                        L.polygon(JSON.parse([data[index].polygon]), {
+                            color: '#fcff42',
+                            weight: 3,
+                            opacity: 0.3
+                        }).addTo(Polygon).bindTooltip('Zona Berbahaya', {
+                            direction: "center"
+                        });
+                    } else {
+                        L.polygon(JSON.parse([data[index].polygon]), {
+                            color: '#42ff4c',
+                            weight: 3,
+                            opacity: 0.3
+                        }).addTo(Polygon).bindTooltip('Zona Aman', {
+                            direction: "center"
+                        });
+                    }
                 }
                 // console.log(JSON.parse([data[index].polygon]));
-
             });
         });
     });
@@ -211,7 +211,9 @@
 
     // CHROLOPETH MAP
     // control that shows state info on hover
-    const info = L.control();
+    const info = L.control({
+        position: 'bottomright'
+    });
 
     info.onAdd = function(map) {
         this._div = L.DomUtil.create('div', 'info');
@@ -295,25 +297,18 @@
 
     map.attributionControl.addAttribution('Tsunami Danger &copy; <a href="https://www.instagram.com/sndyprtn/">Sendy Apriatna</a> &copy; <a href="http://census.gov/">US Census Bureau</a>');
 
-    const legend = L.control({
-        position: 'bottomright'
+    var legend = L.control({
+        position: 'bottomleft'
     });
 
     legend.onAdd = function(map) {
-
-        const div = L.DomUtil.create('div', 'info legend');
-        const grades = [0, 33, 66, 99];
-        const labels = [];
-        let from, to;
-
-        for (let i = 0; i < grades.length; i++) {
-            from = grades[i];
-            to = grades[i + 1];
-
-            labels.push(`<i style="background:${getColor(from + 1)}"></i> ${from}${to ? `%&ndash;${to}%` : '%+'}`);
-        }
-
-        div.innerHTML = labels.join('<br>');
+        var div = L.DomUtil.create("div", "legend");
+        div.innerHTML += "<h4>Map Legend</h4>";
+        div.innerHTML += '<i style="background: red"></i><span>Zona Sangat Berbahaya</span><br>';
+        div.innerHTML += '<i style="background: yellow"></i><span>Zona Berbahaya</span><br>';
+        div.innerHTML += '<i style="background: green"></i><span>Zona Aman</span><br>';
+        div.innerHTML += '<img src="{{ asset("img/shelter.png") }}" style="width:18px;" alt="" class="img-fluid mt-n2"><span class="px-2">Lokasi Shelter</span><br>';
+        div.innerHTML += '<img src="{{ asset("img/tikum.png") }}" style="width:18px;" alt="" class="img-fluid mt-n2"><span class="px-2">Lokasi Titik Kumpul</span><br>';
         return div;
     };
 

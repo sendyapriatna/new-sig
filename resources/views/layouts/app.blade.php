@@ -61,6 +61,7 @@
 
 <body>
     <div id="app">
+        @can('admin')
         <nav class="navbar navbar-expand-md navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -123,7 +124,7 @@
                 </div>
             </div>
         </nav>
-
+        @endcan
         <main class="py-4">
             @yield('content')
         </main>

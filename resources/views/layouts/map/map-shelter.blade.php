@@ -1,5 +1,5 @@
 <div class="">
-    <div id="map" style="height: 50vh; width: 100vh;"></div>
+    <div id="map" style="height: 50vh; width: 100%;"></div>
     <!-- <textarea type="text" name="polygon" id="polygon" style="width: 800px; height:400px;"></textarea> -->
 </div>
 

@@ -22,26 +22,40 @@
         @endif
         <!-- <h2 class="section-title">Buat Titik Polygon</h2> -->
         <div id="map2" style="height: 70vh; width: 100%; z-index:-1"></div>
-        <form action="/draw/add" method="post" enctype="multipart/form-data">
+        <form action="/kerusakan/add" method="post" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="polygon" id="polygon">
             <input type="hidden" name="polygon2" id="polygon">
-            <!-- <textarea name="polygon" style="width:400px; height:400px" id="polygon" cols="30" rows="10"></textarea> -->
-            <!-- <textarea name="polygon2" style="width:400px; height:400px" id="polygon" cols="30" rows="10"></textarea> -->
-            <!-- <input type="hidden" name="is_active" id="is_active" value="1"> -->
-            <select class="custom-select" name="tipe" id="tipe" aria-label="Default select example" style="position: absolute; top:14%; z-index:1; width:15%; right:1%">
-                <option disabled selected>Pilih Tingkat Bahaya</option>
-                <option class="bg-success p-3" value="Aman">Zona Aman</option>
-                <option class="bg-warning p-3" value="Berbahaya">Zona Berbahaya</option>
-                <option class="bg-danger p-3" value="Sangat Berbahaya">Zona Sangat Berbahaya</option>
-            </select>
-            <!-- <div style="position: absolute; top:100px; z-index:1; right:-80%; overflow-x:none" class="input-group mt-3">
-                <label class="input-group-text" for="inputGroupSelect01">Tingkat Bahaya</label>
-                <select class="form-select" name="tipe" id="tipe">
+            <!-- <input class="p-3" type="number" name="density" id="density" style="position: absolute; top:14%; z-index:1; width:10%;height:5%; right:1%" placeholder="Input Density"> -->
+            <section class="card mt-5 p-3">
+                <div class="row p-3">
+                    <div class="col p-3">
+                        <label for="nama" class="form-label">Name Place</label>
+                        <input type="text" style="border-radius: 0.5em;" class="form-control @error('name') is-invalid @enderror" name="name">
+                        @error('nama')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="col p-3">
+                        <label for="density" class="form-label">Persentase Kerusakan</label>
+                        <input type="number" style="border-radius: 0.5em;" class="form-control @error('density') is-invalid @enderror" name="density">
+                        @error('density')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="col p-3 mt-3">
+                        <button type="submit" style="border-radius: 0.5em;" class="btn btn-success p-3 px-5 py-3">Submit</button>
+                    </div>
+                </div>
 
-                </select>
-            </div> -->
-            <button type="submit" style="border-radius: 0.5em;" class="btn btn-success p-3 px-5 py-3 mt-3">Submit</button>
+            </section>
+            <!-- <button type="submit" style="border-radius: 0.5em;" class="btn btn-success p-3 px-5 py-3 mt-3">Submit</button> -->
         </form>
     </section>
 </div>
@@ -59,47 +73,44 @@
 <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 
 <script>
-    var map = L.map('map2').setView([-7.677718722836917, 108.64768251433698], 12);
+    var map = L.map('map2').setView([-7.677718722836917, 108.64768251433698], 13);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
-
     $(document).ready(function() {
-        $.getJSON('../viewPolygon/json', function(data) {
+        $.getJSON('../viewKerusakan/json', function(data) {
             $.each(data, function(index) {
-
-                if ([data[index].tipe] == 'Sangat Berbahaya') {
+                if ([data[index].density] >= 66) {
                     L.polygon(JSON.parse([data[index].polygon]), {
-                        color: '#ff4242',
-                        weight: 3,
-                        opacity: 0.3
-                    }).addTo(map).bindTooltip('Zona Sangat Berbahaya', {
-                        direction: "center"
-                    });
-                } else if ([data[index].tipe] == 'Berbahaya') {
+                        fillColor: '#ff4242', //Polygon Color
+                        weight: 3, //Outline
+                        opacity: 0.5, //Opacity Outline
+                        fillOpacity: 0.5, //Opacity Polygon
+                        color: 'black', //Outline color
+                    }).addTo(map).bindTooltip("<div><table> <th class = 'text-center' colspan='3'> <h6>Persentase Kerusakan</h6> </th><tr><td class='text-center' colspan='3'></td></tr><tr><td> <b>Desa " + data[index].name + "</b></td></tr><tr><td > Kerusakan " + data[index].density + "%</td></tr></table></div>");
+                } else if ([data[index].density] >= 33 && [data[index].density] < 66) {
                     L.polygon(JSON.parse([data[index].polygon]), {
-                        color: '#fcff42',
-                        weight: 3,
-                        opacity: 0.3
-                    }).addTo(map).bindTooltip('Zona Berbahaya', {
-                        direction: "center"
-                    });
+                        fillColor: '#fcff42', //Polygon Color
+                        weight: 3, //Outline
+                        opacity: 0.5, //Opacity Outline
+                        fillOpacity: 0.5, //Opacity Polygon
+                        color: 'black', //Outline color
+                    }).addTo(map).bindTooltip("<div><table> <th class = 'text-center' colspan='3'> <h6>Persentase Kerusakan</h6> </th><tr><td class='text-center' colspan='3'></td></tr><tr><td> <b>Desa " + data[index].name + "</b></td></tr><tr><td > Kerusakan " + data[index].density + "%</td></tr></table></div>");
                 } else {
                     L.polygon(JSON.parse([data[index].polygon]), {
-                        color: '#42ff4c',
-                        weight: 3,
-                        opacity: 0.3
-                    }).addTo(map).bindTooltip('Zona Aman', {
-                        direction: "center"
-                    });
+                        fillColor: '#42ff4c', //Polygon Color
+                        weight: 3, //Outline
+                        opacity: 0.5, //Opacity Outline
+                        fillOpacity: 0.5, //Opacity Polygon
+                        color: 'black', //Outline color
+                    }).addTo(map).bindTooltip("<div><table> <th class = 'text-center' colspan='3'> <h6>Persentase Kerusakan</h6> </th><tr><td class='text-center' colspan='3'></td></tr><tr><td> <b>Desa " + data[index].name + "</b></td></tr><tr><td > Kerusakan " + data[index].density + "%</td></tr></table></div>");
                 }
                 // console.log(JSON.parse([data[index].polygon]));
             });
         });
     });
-
     // Leaflet Draw Plugin
     var drawnItems = new L.FeatureGroup();
     map.addLayer(drawnItems);

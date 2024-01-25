@@ -28,6 +28,7 @@ Route::get('/titikShelter/json', [App\Http\Controllers\LandingPageController::cl
 Route::get('/titikTikum/json', [App\Http\Controllers\LandingPageController::class, 'titikTikum']); //cek vardump
 Route::get('/titikPolygon/json', [App\Http\Controllers\LandingPageController::class, 'titikPolygon']); //cek vardump
 Route::get('/viewPolygon/json', [App\Http\Controllers\LandingPageController::class, 'viewPolygon']); //cek vardump
+Route::get('/viewKerusakan/json', [App\Http\Controllers\LandingPageController::class, 'viewKerusakan']); //cek vardump
 Route::get('/lokasi/json/{id}', [App\Http\Controllers\LandingPageController::class, 'lokasi']);
 // Route::get('/main-ancaman-kerusakan', [App\Http\Controllers\MainMapController::class, 'index']);
 Route::get('/map', [App\Http\Controllers\MapGisController::class, 'index']);
@@ -70,4 +71,15 @@ Route::post('/draw/update', [App\Http\Controllers\PolygonController::class, 'upd
 Route::get('/draw/updateEnum/{id}', [App\Http\Controllers\PolygonController::class, 'findPolygon']);
 Route::get('/draw/delete/{id}', [App\Http\Controllers\PolygonController::class, 'delete']);
 Route::get('/draw/delete2/{id}', [App\Http\Controllers\PolygonController::class, 'delete2']);
-Route::get('/draw/detail', [App\Http\Controllers\PolygonController::class, 'detail']);
+Route::get('/draw/detail/{id}', [App\Http\Controllers\PolygonController::class, 'detail']);
+
+// Dashboard Kerusakan Desa
+Route::get('/kerusakan/create', [App\Http\Controllers\KerusakanController::class, 'index']);
+Route::get('/viewKerusakan', [App\Http\Controllers\KerusakanController::class, 'view']);
+Route::post('/kerusakan/add', [App\Http\Controllers\KerusakanController::class, 'store']);
+Route::get('/kerusakan/edit/{id}', [App\Http\Controllers\KerusakanController::class, 'update']);
+Route::post('/kerusakan/update', [App\Http\Controllers\KerusakanController::class, 'updated']);
+Route::get('/kerusakan/updateEnum/{id}', [App\Http\Controllers\KerusakanController::class, 'findKerusakan']);
+Route::get('/kerusakan/delete/{id}', [App\Http\Controllers\KerusakanController::class, 'delete']);
+Route::get('/kerusakan/delete2/{id}', [App\Http\Controllers\KerusakanController::class, 'delete2']);
+Route::get('/kerusakan/detail/{id}', [App\Http\Controllers\KerusakanController::class, 'detail']);

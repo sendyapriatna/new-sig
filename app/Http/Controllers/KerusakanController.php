@@ -2,37 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Polygon;
+use App\Models\Kerusakan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class PolygonController extends Controller
+class KerusakanController extends Controller
 {
     public function index()
     {
         $this->authorize('admin');
-        return view('layouts.content.draw.draw-create');
+        return view('layouts.content.kerusakan.kerusakan-create');
     }
 
     public function view()
     {
         $this->authorize('admin');
-        return view('layouts.content.draw.draw-view');
+        return view('layouts.content.kerusakan.kerusakan-view');
     }
-
     public function store(Request $request)
     {
         $this->authorize('admin');
         $validatedData = $request->validate([
+            'name' => 'required',
             'polygon' => 'required',
-            'tipe' => 'required',
+            'density' => 'required',
         ]);
 
-        $post = Polygon::Create($validatedData);
+        $post = Kerusakan::Create($validatedData);
 
         if ($post) {
-            return redirect('/viewDraw')->with('toast_success', 'Task Created Successfully!');
+            return redirect('/kerusakan/create')->with('toast_success', 'Task Created Successfully!');
         } else {
             return redirect()
                 ->back()
@@ -43,25 +42,25 @@ class PolygonController extends Controller
     {
         $this->authorize('admin');
 
-        $data = DB::table('polygon_tables')->where('id', $id)->first();
+        $data = DB::table('kerusakan_tables')->where('id', $id)->first();
         // dd($data->is_active);
         if ($data->is_active == 'Active') {
-            $post = DB::table('polygon_tables')->where('id', $id)->update([
+            $post = DB::table('kerusakan_tables')->where('id', $id)->update([
                 'is_active' => 'NonActive',
             ]);
             if ($post) {
-                return redirect('/draw/edit/' . $data->id)->with('toast_success', 'Polygon Non Active!');
+                return redirect('/viewDraw')->with('toast_success', 'kerusakan Non Active!');
             } else {
                 return redirect()
                     ->back()
                     ->withInput()->with('toast_warning', 'Some problem occurred, please try again');
             }
         } else {
-            $post = DB::table('polygon_tables')->where('id', $id)->update([
+            $post = DB::table('kerusakan_tables')->where('id', $id)->update([
                 'is_active' => 'Active',
             ]);
             if ($post) {
-                return redirect('/draw/edit/' . $data->id)->with('toast_success', 'Polygon is Active!');
+                return redirect('/viewDraw')->with('toast_success', 'Polygon is Active!');
             } else {
                 return redirect()
                     ->back()
@@ -73,30 +72,33 @@ class PolygonController extends Controller
     public function detail($id)
     {
         $this->authorize('admin');
-        $data = DB::table('polygon_tables')->where('id', $id)->first();
-        return view('layouts.content.draw.draw-view', ['data' => $data]);
+        $data = DB::table('kerusakan_tables')->where('id', $id)->first();
+        return view('layouts.content.kerusakan.kerusakan-detail', ['data' => $data]);
     }
 
     public function update($id)
     {
         $this->authorize('admin');
-        $data = DB::table('polygon_tables')->where('id', $id)->first();
-        return view('layouts.content.draw.draw-edit', ['data' => $data]);
+        $data = DB::table('kerusakan_tables')->where('id', $id)->first();
+        return view('layouts.content.kerusakan.kerusakan-edit', ['data' => $data]);
     }
+
     public function updated(Request $request)
     {
         $this->validate($request, [
-            'tipe',
+            'name',
+            'density',
             'is_active',
         ]);
 
-        $post = DB::table('polygon_tables')->where('id', $request->id)->update([
-            'tipe' => $request->tipe,
+        $post = DB::table('kerusakan_tables')->where('id', $request->id)->update([
+            'name' => $request->name,
+            'density' => $request->density,
             'is_active' => $request->is_active,
         ]);
 
         if ($post) {
-            return redirect('/draw/edit/' . $request->id)->with('toast_success', 'Task Updated Successfully!');
+            return redirect('/kerusakan/edit/' . $request->id)->with('toast_success', 'Task Updated Successfully!');
         } else {
             return redirect()
                 ->back()

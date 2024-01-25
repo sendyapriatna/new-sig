@@ -12,7 +12,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Edit Polygon</h1>
+            <h1>Edit Data Kerusakan Desa</h1>
         </div>
         <!-- <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -26,11 +26,12 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
-        <form action="/draw/update" method="post" enctype="multipart/form-data">
+        <form action="/kerusakan/update" method="post" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
             <input type="hidden" id="id" name="id" value="{{ $data->id}}" class="form-control select2">
             <!-- <h2 class="section-title">Pilih Titik</h2> -->
             <!-- <p class="section-lead">Pilih titik pada map dibawah</p> -->
+
             <section class="card mt-5 p-3">
                 <div class="row">
                     <div class="col-md-6">
@@ -40,23 +41,22 @@
                     </div>
                     <div class="col-md-6">
                         <div class="col p-3">
-                            <label for="nama" class="form-label">Nama Polygon</label>
-                            <input type="text" style="border-radius: 0.5em;" class="form-control @error('nama') is-invalid @enderror" name="nama" value="Zona {{$data->id}}" disabled>
-                            @error('nama')
+                            <label for="name" class="form-label">Nama Desa</label>
+                            <input type="text" style="border-radius: 0.5em;" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$data->name}}">
+                            @error('name')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
                             @enderror
                         </div>
                         <div class="col p-3">
-                            <label for="tipe" class="form-label">Tipe Bahaya</label>
-                            <input type="hidden" name="tipe" value="{{$data->tipe}}">
-                            <select class="custom-select" name="tipe" id="tipe" aria-label="Default select example">
-                                <option disabled selected>{{$data->tipe}}</option>
-                                <option class="bg-success p-3" value="Aman">Zona Aman</option>
-                                <option class="bg-warning p-3" value="Berbahaya">Zona Berbahaya</option>
-                                <option class="bg-danger p-3" value="Sangat Berbahaya">Zona Sangat Berbahaya</option>
-                            </select>
+                            <label for="density" class="form-label">Persentase Kerusakan</label>
+                            <input type="number" style="border-radius: 0.5em;" class="form-control @error('density') is-invalid @enderror" name="density" value="{{$data->density}}">
+                            @error('density')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                            @enderror
                         </div>
                         <div class="col p-3">
                             <label for="is_active" class="form-label">Status</label>
@@ -100,64 +100,35 @@
 
     // DRAW POLYGON 
     $(document).ready(function() {
-        $.getJSON('/viewPolygon/json', function(data) {
+        $.getJSON('/viewKerusakan/json', function(data) {
             $.each(data, function(index) {
                 if ([data[index].id] == '{{$data->id}}') {
-                    if (data[index].is_active == 'Active') {
-                        if ([data[index].tipe] == 'Sangat Berbahaya') {
-                            L.polygon(JSON.parse([data[index].polygon]), {
-                                color: '#ff4242',
-                                weight: 3,
-                                opacity: 0.3
-                            }).addTo(map).bindTooltip('Zona Sangat Berbahaya', {
-                                direction: "center"
-                            });
-                        } else if ([data[index].tipe] == 'Berbahaya') {
-                            L.polygon(JSON.parse([data[index].polygon]), {
-                                color: '#fcff42',
-                                weight: 3,
-                                opacity: 0.3
-                            }).addTo(map).bindTooltip('Zona Berbahaya', {
-                                direction: "center"
-                            });
-                        } else {
-                            L.polygon(JSON.parse([data[index].polygon]), {
-                                color: '#42ff4c',
-                                weight: 3,
-                                opacity: 0.3
-                            }).addTo(map).bindTooltip('Zona Aman', {
-                                direction: "center"
-                            });
-                        }
+                    if ([data[index].density] >= 66) {
+                        L.polygon(JSON.parse([data[index].polygon]), {
+                            fillColor: '#ff4242', //Polygon Color
+                            weight: 3, //Outline
+                            opacity: 0.5, //Opacity Outline
+                            fillOpacity: 0.5, //Opacity Polygon
+                            color: 'black', //Outline color
+                        }).addTo(map)
+                    } else if ([data[index].density] >= 33 && [data[index].density] < 66) {
+                        L.polygon(JSON.parse([data[index].polygon]), {
+                            fillColor: '#fcff42', //Polygon Color
+                            weight: 3, //Outline
+                            opacity: 0.5, //Opacity Outline
+                            fillOpacity: 0.5, //Opacity Polygon
+                            color: 'black', //Outline color
+                        }).addTo(map)
                     } else {
-                        if ([data[index].tipe] == 'Sangat Berbahaya') {
-                            L.polygon(JSON.parse([data[index].polygon]), {
-                                color: '#ff4242',
-                                weight: 3,
-                                opacity: 0.3
-                            }).addTo(map).bindTooltip('Zona Sangat Berbahaya', {
-                                direction: "center"
-                            });
-                        } else if ([data[index].tipe] == 'Berbahaya') {
-                            L.polygon(JSON.parse([data[index].polygon]), {
-                                color: '#fcff42',
-                                weight: 3,
-                                opacity: 0.3
-                            }).addTo(map).bindTooltip('Zona Berbahaya', {
-                                direction: "center"
-                            });
-                        } else {
-                            L.polygon(JSON.parse([data[index].polygon]), {
-                                color: '#42ff4c',
-                                weight: 3,
-                                opacity: 0.3
-                            }).addTo(map).bindTooltip('Zona Aman', {
-                                direction: "center"
-                            });
-                        }
+                        L.polygon(JSON.parse([data[index].polygon]), {
+                            fillColor: '#42ff4c', //Polygon Color
+                            weight: 3, //Outline
+                            opacity: 0.5, //Opacity Outline
+                            fillOpacity: 0.5, //Opacity Polygon
+                            color: 'black', //Outline color
+                        }).addTo(map)
                     }
                 }
-
                 // console.log(JSON.parse([data[index].polygon]));
             });
         });

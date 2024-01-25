@@ -16,21 +16,6 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
-                    <div class="card-icon bg-primary">
-                        <i class="far fa-user"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Total Admin</h4>
-                        </div>
-                        <div class="card-body">
-                            {{$users}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card card-statistic-1">
                     <div class="card-icon bg-danger">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
@@ -62,7 +47,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-success">
-                        <i class="fas fa-circle"></i>
+                        <i class="fas fa-solid fa-draw-polygon"></i>
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
@@ -70,6 +55,21 @@
                         </div>
                         <div class="card-body">
                             {{$polygon}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-primary">
+                        <i class="far fa-user"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4>Total Desa</h4>
+                        </div>
+                        <div class="card-body">
+                            {{$kerusakan}}
                         </div>
                     </div>
                 </div>
@@ -219,9 +219,9 @@
             <div class="col-md-6 col-sm-6 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Data Shelter</h4>
+                        <h4>Persentase Kerusakan Desa</h4>
                         <div class="card-header-action">
-                            <a href="{{ url('shelter/create') }}" class="btn btn-primary">Add Data</a>
+                            <a href="#" class="btn btn-primary">Add Data</a>
                         </div>
                     </div>
                     <div class="card-body p-0">
@@ -231,23 +231,23 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Name</th>
-                                        <th>Capacity</th>
-                                        <th>Description</th>
+                                        <th>Density</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($shelter_tables as $index => $item2)
+                                    @foreach($kerusakan_tables as $index => $item4)
                                     <tr>
                                         <td>{{$index+1}}</td>
-                                        <td>{{$item2->nama}}</td>
-                                        <td>{{$item2->kapasitas}}</td>
-                                        <td>{{$item2->keterangan}}</td>
+                                        <td>Desa {{$item4->name}}</td>
+                                        <td>{{$item4->density}}%</td>
+                                        <td>{{$item4->is_active}}</td>
                                         <td>
                                             <div class="row">
-                                                <a href="/shelter/detail/{{ $item2->id}}" style="border-radius: 0.5em;" class="btn btn-primary mr-1"><i class="fa-solid fa-circle-info"></i></a>
-                                                <a href="/shelter/edit/{{ $item2->id}}" style="border-radius: 0.5em;" class="btn btn-warning mr-1"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="/shelter/delete/{{ $item2->id}}" style="border-radius: 0.5em;" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="/kerusakan/detail/{{ $item4->id}}" style="border-radius: 0.5em;" class="btn btn-primary mr-1"><i class="fa-solid fa-circle-info"></i></a>
+                                                <a href="/kerusakan/edit/{{ $item4->id}}" style="border-radius: 0.5em;" class="btn btn-warning mr-1"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a href="/kerusakan/delete/{{ $item4->id}}" style="border-radius: 0.5em;" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                                             </div>
                                         </td>
                                         <!-- <td>

@@ -23,10 +23,10 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fa-solid fa-database"></i><span>Data</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('shelter/create') }}">Add Shelter</a>
+                        <a class="nav-link" href="{{ url('shelter/create') }}">Tambah Shelter</a>
                     </li>
                     <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('tikum/create') }}">Add Gathering Point</a>
+                        <a class="nav-link" href="{{ url('tikum/create') }}">tambah Gathering Point</a>
                     </li>
                 </ul>
             </li>
@@ -36,10 +36,10 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fa-solid fa-map"></i><span>Peta GIS</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('/viewDraw') }}">View Peta Ancaman</a>
+                        <a class="nav-link" href="{{ url('/draw/create') }}">Buat Peta Ancaman</a>
                     </li>
                     <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('/draw/create') }}">Buat Peta Ancaman</a>
+                        <a class="nav-link" href="{{ url('/kerusakan/create') }}">Buat Peta Kerusakan Desa</a>
                     </li>
                 </ul>
             </li>

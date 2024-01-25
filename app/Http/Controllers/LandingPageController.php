@@ -45,7 +45,13 @@ class LandingPageController extends Controller
     }
     public function viewPolygon()
     {
-        $result = DB::table('polygon_tables')->select('id', 'polygon', 'tipe')->get();
+        $result = DB::table('polygon_tables')->select('id', 'polygon', 'tipe', 'is_active')->get();
+
+        return json_encode($result);
+    }
+    public function viewKerusakan()
+    {
+        $result = DB::table('kerusakan_tables')->select('id', 'polygon', 'name', 'density', 'is_active')->get();
 
         return json_encode($result);
     }

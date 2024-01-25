@@ -12,7 +12,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>View Map Polygon</h1>
+            <h1>Detail Map Polygon</h1>
         </div>
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -21,7 +21,45 @@
         </div>
         @endif
         <!-- <h2 class="section-title">Buat Titik Polygon</h2> -->
-        @include('layouts.map.view-draw-map')
+        <section class="card mt-5 p-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col p-3">
+                        <div id="map2" style="height: 50vh; width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col p-3">
+                        <label for="nama" class="form-label">Nama Polygon</label>
+                        <input type="text" style="border-radius: 0.5em;" class="form-control @error('nama') is-invalid @enderror" name="nama" value="Zona {{$data->id}}" disabled>
+                        @error('nama')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="col p-3">
+                        <label for="tipe" class="form-label">Tipe Bahaya</label>
+                        <input type="hidden" name="tipe" value="{{$data->tipe}}" disabled>
+                        <select class="custom-select" name="tipe" id="tipe" aria-label="Default select example" disabled>
+                            <option disabled selected>{{$data->tipe}}</option>
+                            <option class="bg-success p-3" value="Aman">Zona Aman</option>
+                            <option class="bg-warning p-3" value="Berbahaya">Zona Berbahaya</option>
+                            <option class="bg-danger p-3" value="Sangat Berbahaya">Zona Sangat Berbahaya</option>
+                        </select>
+                    </div>
+                    <div class="col p-3">
+                        <label for="is_active" class="form-label">Status</label>
+                        <input type="hidden" name="is_active" value="{{$data->is_active}}" disabled>
+                        <select class="custom-select" name="is_active" id="is_active" aria-label="Default select example" disabled>
+                            <option disabled selected>{{$data->is_active}}</option>
+                            <option class="bg-success p-3" value="Active">Active</option>
+                            <option class="bg-danger p-3" value="NonActive">Non Active</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
     </section>
 </div>
 @endsection
@@ -34,7 +72,80 @@
 <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
 <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
 <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+<script type="text/javascript">
+    var map = L.map('map2').setView([-7.677718722836917, 108.64768251433698], 11);
 
+    // google street
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    // DRAW POLYGON 
+    $(document).ready(function() {
+        $.getJSON('/viewPolygon/json', function(data) {
+            $.each(data, function(index) {
+                if ([data[index].id] == '{{$data->id}}') {
+                    if (data[index].is_active == 'Active') {
+                        if ([data[index].tipe] == 'Sangat Berbahaya') {
+                            L.polygon(JSON.parse([data[index].polygon]), {
+                                color: '#ff4242',
+                                weight: 3,
+                                opacity: 0.3
+                            }).addTo(map).bindTooltip('Zona Sangat Berbahaya', {
+                                direction: "center"
+                            });
+                        } else if ([data[index].tipe] == 'Berbahaya') {
+                            L.polygon(JSON.parse([data[index].polygon]), {
+                                color: '#fcff42',
+                                weight: 3,
+                                opacity: 0.3
+                            }).addTo(map).bindTooltip('Zona Berbahaya', {
+                                direction: "center"
+                            });
+                        } else {
+                            L.polygon(JSON.parse([data[index].polygon]), {
+                                color: '#42ff4c',
+                                weight: 3,
+                                opacity: 0.3
+                            }).addTo(map).bindTooltip('Zona Aman', {
+                                direction: "center"
+                            });
+                        }
+                    } else {
+                        if ([data[index].tipe] == 'Sangat Berbahaya') {
+                            L.polygon(JSON.parse([data[index].polygon]), {
+                                color: '#ff4242',
+                                weight: 3,
+                                opacity: 0.3
+                            }).addTo(map).bindTooltip('Zona Sangat Berbahaya', {
+                                direction: "center"
+                            });
+                        } else if ([data[index].tipe] == 'Berbahaya') {
+                            L.polygon(JSON.parse([data[index].polygon]), {
+                                color: '#fcff42',
+                                weight: 3,
+                                opacity: 0.3
+                            }).addTo(map).bindTooltip('Zona Berbahaya', {
+                                direction: "center"
+                            });
+                        } else {
+                            L.polygon(JSON.parse([data[index].polygon]), {
+                                color: '#42ff4c',
+                                weight: 3,
+                                opacity: 0.3
+                            }).addTo(map).bindTooltip('Zona Aman', {
+                                direction: "center"
+                            });
+                        }
+                    }
+                }
+
+                // console.log(JSON.parse([data[index].polygon]));
+            });
+        });
+    });
+</script>
 <!-- Page Specific JS File -->
 <script src="{{ asset('js/page/index-0.js') }}"></script>
 @endpush

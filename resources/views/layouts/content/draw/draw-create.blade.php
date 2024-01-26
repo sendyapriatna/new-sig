@@ -12,7 +12,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Draw Polygon</h1>
+            <h1>Peta Acaman Tsunami</h1>
         </div>
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

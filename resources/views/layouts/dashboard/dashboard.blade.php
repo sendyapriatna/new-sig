@@ -51,7 +51,7 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Polygon</h4>
+                            <h4>Peta Acaman Tsunami</h4>
                         </div>
                         <div class="card-body">
                             {{$polygon}}
@@ -62,11 +62,11 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-primary">
-                        <i class="far fa-user"></i>
+                        <i class='fas fa-landmark'></i>
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Total Desa</h4>
+                            <h4>Persentase Kerusakan Desa</h4>
                         </div>
                         <div class="card-body">
                             {{$kerusakan}}
@@ -116,8 +116,10 @@
                                         </td> -->
                                     </tr>
                                     @endforeach
+
                                 </tbody>
                             </table>
+                            {{ $tikum_tables->links('pagination::bootstrap-4') }}
                         </div>
                     </div>
                 </div>
@@ -164,6 +166,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $shelter_tables->links('pagination::bootstrap-4') }}
                         </div>
                     </div>
                 </div>
@@ -173,7 +176,7 @@
             <div class="col-md-6 col-sm-6 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Polygon</h4>
+                        <h4>Peta Acaman Tsunami</h4>
                         <div class="card-header-action">
                             <a href="{{ url('tikum/create') }}" class="btn btn-primary">Add Data</a>
                         </div>
@@ -212,6 +215,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $polygon_tables->links('pagination::bootstrap-4') }}
                         </div>
                     </div>
                 </div>
@@ -221,7 +225,7 @@
                     <div class="card-header">
                         <h4>Persentase Kerusakan Desa</h4>
                         <div class="card-header-action">
-                            <a href="#" class="btn btn-primary">Add Data</a>
+                            <a href="{{ url('kerusakan/create') }}" class="btn btn-primary">Add Data</a>
                         </div>
                     </div>
                     <div class="card-body p-0">
@@ -239,7 +243,7 @@
                                 <tbody>
                                     @foreach($kerusakan_tables as $index => $item4)
                                     <tr>
-                                        <td>{{$index+1}}</td>
+                                        <td>{{$index+$kerusakan_tables->firstItem()}}</td>
                                         <td>Desa {{$item4->name}}</td>
                                         <td>{{$item4->density}}%</td>
                                         <td>{{$item4->is_active}}</td>
@@ -258,6 +262,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $kerusakan_tables->links('pagination::bootstrap-4') }}
                         </div>
                     </div>
                 </div>

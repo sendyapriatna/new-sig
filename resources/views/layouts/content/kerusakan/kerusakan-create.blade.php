@@ -12,7 +12,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Draw Polygon</h1>
+            <h1>Persentase Kerusakan Desa</h1>
         </div>
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -30,7 +30,7 @@
             <section class="card mt-5 p-3">
                 <div class="row p-3">
                     <div class="col p-3">
-                        <label for="nama" class="form-label">Name Place</label>
+                        <label for="nama" class="form-label">Location Name</label>
                         <input type="text" style="border-radius: 0.5em;" class="form-control @error('name') is-invalid @enderror" name="name">
                         @error('nama')
                         <div class="invalid-feedback">
@@ -73,7 +73,7 @@
 <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 
 <script>
-    var map = L.map('map2').setView([-7.677718722836917, 108.64768251433698], 13);
+    var map = L.map('map2').setView([-7.677718722836917, 108.64768251433698], 12);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,

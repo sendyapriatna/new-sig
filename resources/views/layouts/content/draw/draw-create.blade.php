@@ -73,24 +73,27 @@
                 if ([data[index].tipe] == 'Sangat Berbahaya') {
                     L.polygon(JSON.parse([data[index].polygon]), {
                         color: '#ff4242',
-                        weight: 3,
-                        opacity: 0.3
+                        weight: 3, //Outline
+                        opacity: 0.5, //Opacity Outline
+                        fillOpacity: 0.3, //Opacity Polygon
                     }).addTo(map).bindTooltip('Zona Sangat Berbahaya', {
                         direction: "center"
                     });
                 } else if ([data[index].tipe] == 'Berbahaya') {
                     L.polygon(JSON.parse([data[index].polygon]), {
                         color: '#fcff42',
-                        weight: 3,
-                        opacity: 0.3
+                        weight: 3, //Outline
+                        opacity: 0.5, //Opacity Outline
+                        fillOpacity: 0.3, //Opacity Polygon
                     }).addTo(map).bindTooltip('Zona Berbahaya', {
                         direction: "center"
                     });
                 } else {
                     L.polygon(JSON.parse([data[index].polygon]), {
                         color: '#42ff4c',
-                        weight: 3,
-                        opacity: 0.3
+                        weight: 3, //Outline
+                        opacity: 0.5, //Opacity Outline
+                        fillOpacity: 0.3, //Opacity Polygon
                     }).addTo(map).bindTooltip('Zona Aman', {
                         direction: "center"
                     });

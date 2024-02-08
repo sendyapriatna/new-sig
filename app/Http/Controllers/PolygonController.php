@@ -32,7 +32,7 @@ class PolygonController extends Controller
         $post = Polygon::Create($validatedData);
 
         if ($post) {
-            return redirect('/viewDraw')->with('toast_success', 'Task Created Successfully!');
+            return redirect('/draw/create')->with('toast_success', 'Task Created Successfully!');
         } else {
             return redirect()
                 ->back()
@@ -104,26 +104,26 @@ class PolygonController extends Controller
         }
     }
 
-    // public function delete($id)
-    // {
-    //     $post = DB::table('polygon_tables')->where('id', $id)->delete();
-    //     if ($post) {
-    //         return redirect('/')->with('toast_success', 'Task Deleted Successfully!');
-    //     } else {
-    //         return redirect()
-    //             ->back()
-    //             ->withInput()->with('toast_warning', 'Some problem occurred, please try again');
-    //     }
-    // }
-    public function delete2($id)
+    public function delete($id)
     {
         $post = DB::table('polygon_tables')->where('id', $id)->delete();
         if ($post) {
-            return redirect('/viewDraw')->with('toast_success', 'Task Deleted Successfully!');
+            return redirect('/dashboard')->with('toast_success', 'Task Deleted Successfully!');
         } else {
             return redirect()
                 ->back()
                 ->withInput()->with('toast_warning', 'Some problem occurred, please try again');
         }
     }
+    // public function delete2($id)
+    // {
+    //     $post = DB::table('polygon_tables')->where('id', $id)->delete();
+    //     if ($post) {
+    //         return redirect('/viewDraw')->with('toast_success', 'Task Deleted Successfully!');
+    //     } else {
+    //         return redirect()
+    //             ->back()
+    //             ->withInput()->with('toast_warning', 'Some problem occurred, please try again');
+    //     }
+    // }
 }

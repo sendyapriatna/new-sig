@@ -31,7 +31,7 @@
                 <div class="row p-3">
                     <div class="col p-3">
                         <label for="nama" class="form-label">Location Name</label>
-                        <input type="text" style="border-radius: 0.5em;" class="form-control @error('name') is-invalid @enderror" name="name">
+                        <input type="text" style="border-radius: 0.5em;" class="form-control @error('name') is-invalid @enderror" name="name" value="{{old('name')}}">
                         @error('nama')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -40,7 +40,7 @@
                     </div>
                     <div class="col p-3">
                         <label for="density" class="form-label">Persentase Kerusakan</label>
-                        <input type="number" style="border-radius: 0.5em;" class="form-control @error('density') is-invalid @enderror" name="density">
+                        <input type="number" style="border-radius: 0.5em;" class="form-control @error('density') is-invalid @enderror" name="density" value="{{old('density')}}">
                         @error('density')
                         <div class="invalid-feedback">
                             {{$message}}

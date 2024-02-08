@@ -29,7 +29,7 @@
                     <div class="col-md-4">
                         <div class="col p-3">
                             <label for="nama" class="form-label">Name Place</label>
-                            <input type="text" style="border-radius: 0.5em;" class="form-control @error('nama') is-invalid @enderror" name="nama">
+                            <input type="text" style="border-radius: 0.5em;" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{old('nama')}}">
                             @error('nama')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -38,7 +38,7 @@
                         </div>
                         <div class="col p-3">
                             <label for="alamat" class="form-label">Address</label>
-                            <input type="text" style="border-radius: 0.5em;" class="form-control @error('alamat') is-invalid @enderror" name="alamat">
+                            <input type="text" style="border-radius: 0.5em;" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{old('alamat')}}">
                             @error('alamat')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -47,7 +47,7 @@
                         </div>
                         <div class="col p-3">
                             <label for="keterangan" class="form-label">Description</label>
-                            <input type="text" style="border-radius: 0.5em;" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan">
+                            <input type="text" style="border-radius: 0.5em;" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan" value="{{old('keterangan')}}">
                             @error('keterangan')
                             <div class=" invalid-feedback">
                                 {{$message}}
@@ -58,7 +58,7 @@
                     <div class="col-md-4">
                         <div class="col p-3">
                             <label for="kapasitas" class="form-label">Capacity</label>
-                            <input type="text" style="border-radius: 0.5em;" class="form-control @error('kapasitas') is-invalid @enderror" name="kapasitas">
+                            <input type="text" style="border-radius: 0.5em;" class="form-control @error('kapasitas') is-invalid @enderror" name="kapasitas" value="{{old('kapasitas')}}">
                             @error('kapasitas')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -67,7 +67,7 @@
                         </div>
                         <div class="col p-3">
                             <label for="latitude" class="form-label">Latitude</label>
-                            <input type="text" id="Lattitude" style="border-radius: 0.5em;" class="form-control @error('latitude') is-invalid @enderror" name="latitude">
+                            <input type="text" id="Lattitude" style="border-radius: 0.5em;" class="form-control @error('latitude') is-invalid @enderror" name="latitude" value="{{old('latitude')}}">
                             @error('latitude')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -76,7 +76,7 @@
                         </div>
                         <div class="col p-3">
                             <label for="longitude" class="form-label">Longitude</label>
-                            <input type="text" id="Longitude" style="border-radius: 0.5em;" class="form-control @error('longitude') is-invalid @enderror" name="longitude">
+                            <input type="text" id="Longitude" style="border-radius: 0.5em;" class="form-control @error('longitude') is-invalid @enderror" name="longitude" value="{{old('longitude')}}">
                             @error('longitude')
                             <div class="invalid-feedback">
                                 {{$message}}

@@ -135,7 +135,6 @@
                         });
                     }
                 }
-                // console.log(JSON.parse([data[index].polygon]));
             });
         });
     });
@@ -172,28 +171,9 @@
                         }).addTo(Kerusakan).bindTooltip("<div><table> <th class = 'text-center' colspan='3'> <h6>Persentase Kerusakan</h6> </th><tr><td class='text-center' colspan='3'></td></tr><tr><td> <b>Desa " + data[index].name + "</b></td></tr><tr><td > Kerusakan " + data[index].density + "%</td></tr></table></div>");
                     }
                 }
-                // console.log(JSON.parse([data[index].polygon]));
             });
         });
     });
-    // END KERUSAKAN
-
-    // POLYGON PETA DANGER CONTOH JSON (UDAH JADI)
-    // const petaDanger = L.geoJSON(tsunamiData, {
-    //     style: function(feature) {
-    //         switch (feature.properties.party) {
-    //             case 'Aman':
-    //                 return {
-    //                     color: "#00ff44"
-    //                 };
-    //             case 'Democrat':
-    //                 return {
-    //                     color: "#0000ff"
-    //                 };
-    //         }
-    //     }
-    // });
-    // END POLYGON PETA DANGER
 
     var baseMaps = {
         "Open Street Map": osm,
@@ -217,7 +197,6 @@
         "Peta Kerusakan": Kerusakan
     };
 
-
     map.attributionControl.addAttribution('Tsunami Danger &copy; <a href="https://www.instagram.com/sndyprtn/">Sendy Apriatna</a> &copy; <a href="http://census.gov/">US Census Bureau</a>');
 
     var legend = L.control({
@@ -236,10 +215,6 @@
     };
 
     legend.addTo(map);
-
     L.control.locate().addTo(map);
-
-    // ADD TO LAYER
     const layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
-    // layerControl.addOverlay(geojson, 'Peta Kerusakan');
 </script>

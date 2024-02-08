@@ -103,61 +103,32 @@
         $.getJSON('/viewPolygon/json', function(data) {
             $.each(data, function(index) {
                 if ([data[index].id] == '{{$data->id}}') {
-                    if (data[index].is_active == 'Active') {
-                        if ([data[index].tipe] == 'Sangat Berbahaya') {
-                            L.polygon(JSON.parse([data[index].polygon]), {
-                                color: '#ff4242',
-                                weight: 3,
-                                opacity: 0.3
-                            }).addTo(map).bindTooltip('Zona Sangat Berbahaya', {
-                                direction: "center"
-                            });
-                        } else if ([data[index].tipe] == 'Berbahaya') {
-                            L.polygon(JSON.parse([data[index].polygon]), {
-                                color: '#fcff42',
-                                weight: 3,
-                                opacity: 0.3
-                            }).addTo(map).bindTooltip('Zona Berbahaya', {
-                                direction: "center"
-                            });
-                        } else {
-                            L.polygon(JSON.parse([data[index].polygon]), {
-                                color: '#42ff4c',
-                                weight: 3,
-                                opacity: 0.3
-                            }).addTo(map).bindTooltip('Zona Aman', {
-                                direction: "center"
-                            });
-                        }
+                    if ([data[index].tipe] == 'Sangat Berbahaya') {
+                        L.polygon(JSON.parse([data[index].polygon]), {
+                            color: '#ff4242',
+                            weight: 3,
+                            opacity: 0.3
+                        }).addTo(map).bindTooltip('Zona Sangat Berbahaya', {
+                            direction: "center"
+                        });
+                    } else if ([data[index].tipe] == 'Berbahaya') {
+                        L.polygon(JSON.parse([data[index].polygon]), {
+                            color: '#fcff42',
+                            weight: 3,
+                            opacity: 0.3
+                        }).addTo(map).bindTooltip('Zona Berbahaya', {
+                            direction: "center"
+                        });
                     } else {
-                        if ([data[index].tipe] == 'Sangat Berbahaya') {
-                            L.polygon(JSON.parse([data[index].polygon]), {
-                                color: '#ff4242',
-                                weight: 3,
-                                opacity: 0.3
-                            }).addTo(map).bindTooltip('Zona Sangat Berbahaya', {
-                                direction: "center"
-                            });
-                        } else if ([data[index].tipe] == 'Berbahaya') {
-                            L.polygon(JSON.parse([data[index].polygon]), {
-                                color: '#fcff42',
-                                weight: 3,
-                                opacity: 0.3
-                            }).addTo(map).bindTooltip('Zona Berbahaya', {
-                                direction: "center"
-                            });
-                        } else {
-                            L.polygon(JSON.parse([data[index].polygon]), {
-                                color: '#42ff4c',
-                                weight: 3,
-                                opacity: 0.3
-                            }).addTo(map).bindTooltip('Zona Aman', {
-                                direction: "center"
-                            });
-                        }
+                        L.polygon(JSON.parse([data[index].polygon]), {
+                            color: '#42ff4c',
+                            weight: 3,
+                            opacity: 0.3
+                        }).addTo(map).bindTooltip('Zona Aman', {
+                            direction: "center"
+                        });
                     }
                 }
-
                 // console.log(JSON.parse([data[index].polygon]));
             });
         });

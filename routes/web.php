@@ -83,3 +83,7 @@ Route::get('/kerusakan/updateEnum/{id}', [App\Http\Controllers\KerusakanControll
 Route::get('/kerusakan/delete/{id}', [App\Http\Controllers\KerusakanController::class, 'delete']);
 Route::get('/kerusakan/delete2/{id}', [App\Http\Controllers\KerusakanController::class, 'delete2']);
 Route::get('/kerusakan/detail/{id}', [App\Http\Controllers\KerusakanController::class, 'detail']);
+
+// Dashboard Profil
+Route::get('/dashboard/profil/{id}', [App\Http\Controllers\DashboardController::class, 'profil']);
+Route::post('/dashboard/profil_update', [App\Http\Controllers\DashboardController::class, 'updated']);

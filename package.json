@@ -15,6 +15,7 @@
     },
     "dependencies": {
         "bootstrap-icons": "^1.11.2",
+        "bootstrap-show-password-toggle": "^1.4.1",
         "leaflet-routing-machine": "^3.2.12"
     }
 }

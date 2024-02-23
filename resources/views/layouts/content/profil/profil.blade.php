@@ -1,6 +1,6 @@
 @extends('layouts.app2')
 
-@section('title2', 'Shelter Create')
+@section('title2', 'Profile')
 
 @push('style')
 <!-- CSS Libraries -->
@@ -31,7 +31,7 @@
             @csrf
             <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
             <input type="hidden" id="id" name="id" value="{{ $data->id}}" class="form-control select2">
-            <h2 class="section-title" sty>Pilih Titik</h2>
+            <h2 class="section-title" sty>Change Information Profile</h2>
             <!-- <p class="section-lead">Pilih titik pada map dibawah</p> -->
             <div class="row">
                 <div class="col-md-4">
@@ -40,7 +40,6 @@
                     @else
                     <div class=" text-center"><img class="img-fluid" style="height: 50vh; width: 50vh;" src="{{ asset('img/avatar/avatar-1.png') }}"></div>
                     @endif
-
                 </div>
                 <div class="col">
                     <section class="card px-5 py-5">
@@ -63,20 +62,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input id="password" style="border-radius: 0.5em;" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                            @error('password')
-                            <div class=" invalid-feedback">
-                                {{$message}}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Confirm Password</label>
-                            <input id="password-confirm" style="border-radius: 0.5em;" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                        </div>
-                        <div class="mb-3">
-                            <label for="image" class="form-label @error('image') is-invalid @enderror">Post Image</label>
+                            <label for="image" class="form-label @error('image') is-invalid @enderror">User Image</label>
                             <input type="hidden" name="oldImage" value="{{$data->image}}">
                             <img src="" alt="" class="img-preview img-fluid col p-3">
                             <input type="file" class="form-control" id="image" name="image" onchange="previewImage()">
@@ -86,14 +72,69 @@
                             </div>
                             @enderror
                         </div>
+                        <div class="row">
+                            <div class="col p-3 mt-2">
+                                <button type="submit" style="border-radius: 0.5em;" class="btn btn-success p-3 px-5 py-3">Save Change</button>
+                            </div>
+                        </div>
                     </section>
                 </div>
             </div>
-            <div class="row p-3">
-                <div class="col p-3 mt-3">
-                    <button type="submit" style="border-radius: 0.5em;" class="btn btn-success p-3 px-5 py-3">Submit</button>
+        </form>
+        <form action="/dashboard/profil_update2" method="post">
+            @csrf
+            <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
+            <input type="hidden" id="id2" name="id2" value="{{ $data->id}}" class="form-control select2">
+            <section class="card px-5 py-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <!-- <input type="hidden" style="border-radius: 0.5em;" class="form-control" name="oldpassword" value="{{$data->password}}"> -->
+                            <label for="password" class="form-label">Old Password</label>
+                            <div class="input-group" id="show_hide_password">
+                                <input id="oldpassword" style="border-radius: 0.5em;" type="password" class="form-control" name="oldpasswordInput" autocomplete="new-password">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fa fa-eye-slash" aria-hidden="true" onMouseOver="this.style.cursor='pointer'"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="password" class="form-label">New Password</label>
+                            <div class="input-group" id="show_hide_passwordnew">
+                                <input id="password" style="border-radius: 0.5em;" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fa fa-eye-slash" aria-hidden="true" onMouseOver="this.style.cursor='pointer'"></i></span>
+                                </div>
+                                @error('password')
+                                <div class=" invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Confirm Password</label>
+                            <div class="input-group" id="show_hide_passwordconfirm">
+                                <input id="password-confirm" style="border-radius: 0.5em;" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fa fa-eye-slash" aria-hidden="true" onMouseOver="this.style.cursor='pointer'"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col p-3 mt-3">
+                        <button type="submit" style="border-radius: 0.5em;" class="btn btn-success p-3 px-5 py-3">Reset Password</button>
+                    </div>
+                </div>
+            </section>
         </form>
     </section>
 </div>
@@ -108,38 +149,46 @@
 <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
 <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 <script>
-    var map = L.map('map2').setView([-7.707769, 108.658733], 13);
-
-    // google street
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-
-
-    var popup = L.popup();
-
-    function onMapClick(e) {
-        popup
-            .setLatLng(e.latlng)
-            .setContent("You clicked the map at " + e.latlng.toString())
-            .openOn(map);
-    }
-
-    map.on('click', onMapClick);
-
-    map.on('click', (e) => {
-        const longtitude = e.latlng.lng
-        const lattitude = e.latlng.lat
-
-        console.log({
-            longtitude,
-            lattitude
+    $(document).ready(function() {
+        $("#show_hide_password span").on('click', function(event) {
+            event.preventDefault();
+            if ($('#show_hide_password input').attr("type") == "text") {
+                $('#show_hide_password input').attr('type', 'password');
+                $('#show_hide_password i').addClass("fa-eye-slash");
+                $('#show_hide_password i').removeClass("fa-eye");
+            } else if ($('#show_hide_password input').attr("type") == "password") {
+                $('#show_hide_password input').attr('type', 'text');
+                $('#show_hide_password i').removeClass("fa-eye-slash");
+                $('#show_hide_password i').addClass("fa-eye");
+            }
         });
-        $("#Longitude").val(longtitude);
-        $("#Lattitude").val(lattitude);
-    })
 
+        $("#show_hide_passwordnew span").on('click', function(event) {
+            event.preventDefault();
+            if ($('#show_hide_passwordnew input').attr("type") == "text") {
+                $('#show_hide_passwordnew input').attr('type', 'password');
+                $('#show_hide_passwordnew i').addClass("fa-eye-slash");
+                $('#show_hide_passwordnew i').removeClass("fa-eye");
+            } else if ($('#show_hide_passwordnew input').attr("type") == "password") {
+                $('#show_hide_passwordnew input').attr('type', 'text');
+                $('#show_hide_passwordnew i').removeClass("fa-eye-slash");
+                $('#show_hide_passwordnew i').addClass("fa-eye");
+            }
+        });
+
+        $("#show_hide_passwordconfirm span").on('click', function(event) {
+            event.preventDefault();
+            if ($('#show_hide_passwordconfirm input').attr("type") == "text") {
+                $('#show_hide_passwordconfirm input').attr('type', 'password');
+                $('#show_hide_passwordconfirm i').addClass("fa-eye-slash");
+                $('#show_hide_passwordconfirm i').removeClass("fa-eye");
+            } else if ($('#show_hide_passwordconfirm input').attr("type") == "password") {
+                $('#show_hide_passwordconfirm input').attr('type', 'text');
+                $('#show_hide_passwordconfirm i').removeClass("fa-eye-slash");
+                $('#show_hide_passwordconfirm i').addClass("fa-eye");
+            }
+        });
+    });
 
     // IMAGE PREVIEW
     function previewImage() {

@@ -87,3 +87,4 @@ Route::get('/kerusakan/detail/{id}', [App\Http\Controllers\KerusakanController::
 // Dashboard Profil
 Route::get('/dashboard/profil/{id}', [App\Http\Controllers\DashboardController::class, 'profil']);
 Route::post('/dashboard/profil_update', [App\Http\Controllers\DashboardController::class, 'updated']);
+Route::post('/dashboard/profil_update2', [App\Http\Controllers\DashboardController::class, 'updated2']);

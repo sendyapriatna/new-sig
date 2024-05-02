@@ -41,7 +41,35 @@
 
                 </select>
             </div> -->
-            <button type="submit" style="border-radius: 0.5em;" class="btn btn-success p-3 px-5 py-3 mt-3">Submit</button>
+            <section class="card mt-5 p-3">
+                <div class="row p-3">
+                    <div class="col p-3">
+                        <label for="ketinggian" class="form-label">Tinggi Gelombang (m)</label>
+                        <input type="number" style="border-radius: 0.5em;" class="form-control @error('ketinggian') is-invalid @enderror" name="ketinggian" value="{{old('ketinggian')}}">
+                        @error('ketinggian')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="col p-3">
+                        <label for="jarakpantai" class="form-label">Jarak Pantai (m)</label>
+                        <input type="number" style="border-radius: 0.5em;" class="form-control @error('jarakpantai') is-invalid @enderror" name="jarakpantai" value="{{old('jarakpantai')}}">
+                        @error('jarakpantai')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="col p-3 mt-3">
+                        <button type="submit" style="border-radius: 0.5em;" class="btn btn-success p-3 px-5 py-3">Submit</button>
+                    </div>
+                </div>
+
+            </section>
+            <!-- <button type="submit" style="border-radius: 0.5em;" class="btn btn-success p-3 px-5 py-3 mt-3">Submit</button> -->
         </form>
     </section>
 </div>

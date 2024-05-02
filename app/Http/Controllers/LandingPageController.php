@@ -16,6 +16,18 @@ class LandingPageController extends Controller
     public function index2()
     {
         $location = DB::table('location_tables')->count();
+        alert()->html('Selamat Datang di Aplikasi Sistem Informasi Geografis Pemetaan Dampak Tsunami di Kota Pangandaran Berbasis Website', "
+        Petunjuk Penggunaan :<br>
+        1. Zoom In untuk mendekatkan objek pada layar<br>
+        2. Zoom Out untuk menjauhkan objek pada layar<br>
+        3. Home untuk menampilkan tampilan awal<br>
+        4. Track Location untuk mengetahui posisi kita<br>
+        5. Menu Legend untuk menampilkan legenda peta<br>
+        6. Menu Layers untuk mengaktifkan/Non aktifkan lapisan peta yang ingin di tampilkan<br>
+        7. Menu Basemap Gallery untuk mengganti Basemap peta<br>
+        8. Menu Overview Map untuk menampilkan inset peta<br>
+        9. Klik Icon untuk menampilkan informasi fasilitas<br> 
+        10. Menu Details untuk melihat keterangan mengenai fasilitas")->persistent('Dismiss');
         return view('layouts.dashboard.welcome', compact('location'));
     }
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\tikum;
+use App\Models\Tikum;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 

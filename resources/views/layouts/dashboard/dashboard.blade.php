@@ -77,8 +77,8 @@
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 col-12">
                 <div class="card card-statistic-1">
-                    <div class="card-icon bg-primary">
-                        <i class='fas fa-landmark'></i>
+                    <div class="card-icon bg-secondary">
+                        <i class="fas fa-user-alt"></i>
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
@@ -93,14 +93,14 @@
             <div class="col-lg-2 col-md-2 col-sm-2 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-primary">
-                        <i class='fas fa-landmark'></i>
+                        <i class='fas fa-wrench'></i>
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Persentase Kerusakan Desa</h4>
+                            <h4>Soon</h4>
                         </div>
                         <div class="card-body">
-                            {{$kerusakan}}
+                            0
                         </div>
                     </div>
                 </div>

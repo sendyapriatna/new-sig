@@ -15,6 +15,13 @@ class ShelterController extends Controller
         $shelter = DB::table('shelter_tables')->count();
         return view('layouts.content.shelter.shelter', ['shelter_tables' => Shelter::orderBy('id', 'desc')->paginate(10)], compact('shelter'));
     }
+    public function create()
+    {
+        $this->authorize('admin');
+        // $shelter = DB::table('shelter_tables')->count();
+        return view('layouts.content.shelter.shelter-create');
+    }
+
     public function store(Request $request)
     {
 

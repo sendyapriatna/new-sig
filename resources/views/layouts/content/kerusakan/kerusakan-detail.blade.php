@@ -1,6 +1,6 @@
 @extends('layouts.app2')
 
-@section('title2', 'View Draw Map')
+@section('title2', 'View Percentage of Village Damage')
 
 @push('style')
 <!-- CSS Libraries -->

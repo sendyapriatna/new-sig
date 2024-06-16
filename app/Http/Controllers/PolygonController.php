@@ -12,9 +12,15 @@ class PolygonController extends Controller
     public function index()
     {
         $this->authorize('admin');
+        $polygon = DB::table('polygon_tables')->count();
+        return view('layouts.content.draw.draw', ['polygon_tables' => Polygon::orderBy('id', 'desc')->paginate(10)], compact('polygon'));
+    }
+    public function create()
+    {
+        $this->authorize('admin');
+        // $shelter = DB::table('shelter_tables')->count();
         return view('layouts.content.draw.draw-create');
     }
-
     public function view()
     {
         $this->authorize('admin');

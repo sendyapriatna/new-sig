@@ -48,7 +48,8 @@ Route::get('/detailTikum/{id}', [App\Http\Controllers\ViewDetailShelterControlle
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
 
 // Dashboard Shelter
-Route::get('/shelter/create', [App\Http\Controllers\ShelterController::class, 'index']);
+Route::get('/shelter', [App\Http\Controllers\ShelterController::class, 'index']);
+Route::get('/shelter/create', [App\Http\Controllers\ShelterController::class, 'create']);
 Route::post('/shelter/add', [App\Http\Controllers\ShelterController::class, 'store']);
 Route::get('/shelter/edit/{id}', [App\Http\Controllers\ShelterController::class, 'update']);
 Route::post('/shelter/update', [App\Http\Controllers\ShelterController::class, 'updated']);
@@ -56,7 +57,8 @@ Route::get('/shelter/delete/{id}', [App\Http\Controllers\ShelterController::clas
 Route::get('/shelter/detail/{id}', [App\Http\Controllers\ShelterController::class, 'detail']);
 
 // Dashboard Tikum
-Route::get('/tikum/create', [App\Http\Controllers\TikumController::class, 'index']);
+Route::get('/tikum', [App\Http\Controllers\TikumController::class, 'index']);
+Route::get('/tikum/create', [App\Http\Controllers\TikumController::class, 'create']);
 Route::post('/tikum/add', [App\Http\Controllers\TikumController::class, 'store']);
 Route::get('/tikum/edit/{id}', [App\Http\Controllers\TikumController::class, 'update']);
 Route::post('/tikum/update', [App\Http\Controllers\TikumController::class, 'updated']);
@@ -64,7 +66,8 @@ Route::get('/tikum/delete/{id}', [App\Http\Controllers\TikumController::class, '
 Route::get('/tikum/detail/{id}', [App\Http\Controllers\TikumController::class, 'detail']);
 
 // Dashboard Draw
-Route::get('/draw/create', [App\Http\Controllers\PolygonController::class, 'index']);
+Route::get('/draw', [App\Http\Controllers\PolygonController::class, 'index']);
+Route::get('/draw/create', [App\Http\Controllers\PolygonController::class, 'create']);
 Route::get('/viewDraw', [App\Http\Controllers\PolygonController::class, 'view']);
 Route::post('/draw/add', [App\Http\Controllers\PolygonController::class, 'store']);
 Route::get('/draw/edit/{id}', [App\Http\Controllers\PolygonController::class, 'update']);
@@ -75,7 +78,8 @@ Route::get('/draw/delete2/{id}', [App\Http\Controllers\PolygonController::class,
 Route::get('/draw/detail/{id}', [App\Http\Controllers\PolygonController::class, 'detail']);
 
 // Dashboard Kerusakan Desa
-Route::get('/kerusakan/create', [App\Http\Controllers\KerusakanController::class, 'index']);
+Route::get('/kerusakan', [App\Http\Controllers\KerusakanController::class, 'index']);
+Route::get('/kerusakan/create', [App\Http\Controllers\KerusakanController::class, 'create']);
 Route::get('/viewKerusakan', [App\Http\Controllers\KerusakanController::class, 'view']);
 Route::post('/kerusakan/add', [App\Http\Controllers\KerusakanController::class, 'store']);
 Route::get('/kerusakan/edit/{id}', [App\Http\Controllers\KerusakanController::class, 'update']);

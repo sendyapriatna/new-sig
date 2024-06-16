@@ -12,6 +12,13 @@ class TikumController extends Controller
     public function index()
     {
         $this->authorize('admin');
+        $tikum = DB::table('tikum_tables')->count();
+        return view('layouts.content.tikum.tikum', ['tikum_tables' => Tikum::orderBy('id', 'desc')->paginate(10)], compact('tikum'));
+    }
+    public function create()
+    {
+        $this->authorize('admin');
+        // $shelter = DB::table('shelter_tables')->count();
         return view('layouts.content.tikum.tikum-create');
     }
     public function store(Request $request)

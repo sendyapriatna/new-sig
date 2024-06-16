@@ -23,27 +23,28 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fa-solid fa-database"></i><span>Data</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('shelter/create') }}">Tambah Shelter</a>
+                        <a class="nav-link" href="{{ url('shelter') }}">Shelter</a>
                     </li>
                     <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('tikum/create') }}">tambah Gathering Point</a>
+                        <a class="nav-link" href="{{ url('tikum') }}">Gathering Point</a>
+                    </li>
+                    <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('/draw') }}">Peta Ancaman</a>
+                    </li>
+                    <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('/kerusakan') }}">Peta Kerusakan Desa</a>
                     </li>
                 </ul>
             </li>
         </ul>
-        <ul class="sidebar-menu">
+        <!-- <ul class="sidebar-menu">
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fa-solid fa-map"></i><span>Peta GIS</span></a>
                 <ul class="dropdown-menu">
-                    <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('/draw/create') }}">Buat Peta Ancaman</a>
-                    </li>
-                    <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('/kerusakan/create') }}">Buat Peta Kerusakan Desa</a>
-                    </li>
+
                 </ul>
             </li>
-        </ul>
+        </ul> -->
         <!-- <ul class="sidebar-menu">
             <li class="menu-header">PROFILE</li>
             <li class="nav-item dropdown">

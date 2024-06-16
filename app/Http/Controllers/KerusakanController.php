@@ -11,6 +11,13 @@ class KerusakanController extends Controller
     public function index()
     {
         $this->authorize('admin');
+        $kerusakan = DB::table('kerusakan_tables')->count();
+        return view('layouts.content.kerusakan.kerusakan', ['kerusakan_tables' => Kerusakan::orderBy('id', 'desc')->paginate(10)], compact('kerusakan'));
+    }
+    public function create()
+    {
+        $this->authorize('admin');
+        // $shelter = DB::table('shelter_tables')->count();
         return view('layouts.content.kerusakan.kerusakan-create');
     }
 
